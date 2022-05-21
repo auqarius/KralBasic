@@ -1,7 +1,7 @@
 # KralBasic
 
 [![Swift-5.0](https://img.shields.io/badge/Swift-5.0-brightgreen)]()
-[![Swift Package Manager - 1.0.0](https://img.shields.io/badge/SPM-1.0.0-brightgreen)]()
+[![Swift Package Manager - 1.0.0](https://img.shields.io/badge/Swift%20Package%20Manager-1.0.0-orange)]()
 
 
 
