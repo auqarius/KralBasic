@@ -1,10 +1,23 @@
 # KralBasic
 
+[![Swift-5.0](https://img.shields.io/badge/Swift-5.0-brightgreen)]()
+[![Swift Package Manager - 1.0.0](https://img.shields.io/badge/SPM-1.0.0-brightgreen)]()
+
+
+
 这个包是个人在多个项目的积累后频繁使用的代码库，基本每个项目都要把这些代码复制到新项目中。这实属有些麻烦，因此创建这个包来帮助自己把这些代码统一管理。
 
 期待有缘人一起共同进步，有想法的朋友欢迎提交 issue、PR。
 
-具体类和使用文档：
+## 使用
+
+
+```
+.package(url: "https://github.com/auqarius/KralBasic.git", from: "4.0.0")
+
+
+```
+
 
 ## Common
 
