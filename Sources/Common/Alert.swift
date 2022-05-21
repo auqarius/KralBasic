@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 // MARK: - Alert
-func alert(viewController: UIViewController, title: String = "", message: String = "", confirmTitle: String = "", otherTitles: [String] = [], cancelTitle: String = "", confirm: @escaping () -> (), otherSelected: ((String) -> ())? = nil, cancel:  (() -> ())? = nil) {
+public func alert(viewController: UIViewController, title: String = "", message: String = "", confirmTitle: String = "", otherTitles: [String] = [], cancelTitle: String = "", confirm: @escaping () -> (), otherSelected: ((String) -> ())? = nil, cancel:  (() -> ())? = nil) {
     DispatchQueue.main.async {
         let alert = UIAlertController.init(title: title, message: message, preferredStyle: .alert)
         
@@ -78,19 +78,19 @@ func actionSheet(viewController: UIViewController, sourceView: UIView? = nil, ti
     }
 }
 
-func alertWithInput(from vc: UIViewController, title: String, msg: String, completion: @escaping (String) -> ()) {
-    let alert = UIAlertController.init(title: title, message: msg, preferredStyle: .alert)
+func alertWithInput(from vc: UIViewController, title: String, msg: String, placeholder: String, cancelTitle: String = "Cancel", confirmTitle: String = "Confirm", completion: @escaping (String) -> ()) {
+    let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
     
     alert.addTextField { (textField) in
-        textField.placeholder = msg
+        textField.placeholder = placeholder
         textField.isSecureTextEntry = true
     }
     
-    alert.addAction(UIAlertAction(title: "CANCEL", style: .default, handler: { (action: UIAlertAction) in
+    alert.addAction(UIAlertAction(title: cancelTitle, style: .default, handler: { (action: UIAlertAction) in
         
     }))
     
-    alert.addAction(UIAlertAction(title: "CONFIRM", style: .default, handler: { (action: UIAlertAction) in
+    alert.addAction(UIAlertAction(title: confirmTitle, style: .default, handler: { (action: UIAlertAction) in
         if let text = alert.textFields?[0].text,
            text.count > 0 {
             completion(text)

@@ -12,7 +12,7 @@ import Objc
 public extension Date {
     
     /// 系统时区的当前时间
-    public static var nowLocalTime: Date {
+    static var nowLocalTime: Date {
         get {
             return Date().nowTimeZoneDate
         }
@@ -39,7 +39,7 @@ public extension Date {
     }
 }
 
-extension Date {
+public extension Date {
     
     /// 12:23 分秒类型的字符串
     /// 在这里，认为 self 是当前时区的时间
