@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "devicekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/devicekit/DeviceKit.git",
+      "state" : {
+        "revision" : "cc49d42dafd69c96abbf695cedbefab6441f1afa",
+        "version" : "4.6.0"
+      }
+    }
+  ],
+  "version" : 2
+}
