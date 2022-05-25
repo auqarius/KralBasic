@@ -28,7 +28,7 @@ extension UIViewController {
 
 private var kMailSentBlockIdentifier = "kMailSentBlockIdentifier"
 
-extension UIViewController {
+public extension UIViewController {
     
     enum MailSendStatus: Int {
         case cancelled = 0
@@ -66,7 +66,7 @@ extension UIViewController {
     
 }
 
-public extension UIViewController: MFMailComposeViewControllerDelegate {
+extension UIViewController: MFMailComposeViewControllerDelegate {
     
     public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
