@@ -10,9 +10,9 @@
 import UIKit
 
 class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
-
+    
     var rootVC: UIViewController!
-
+    
     var navBarColor: UIColor = .white
     
     var tintColor: UIColor = .black
@@ -20,18 +20,18 @@ class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationCon
     var backImageName: String = "chevron.left"
     
     var navBarTranslucent: Bool = true
-
+    
     fileprivate func makeNavBar() {
         if #available(iOS 13.0, *) {
-        UINavigationBar.appearance().isTranslucent = navBarTranslucent
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = navBarColor
-        appearance.shadowColor = navBarColor
-        appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor]
-        navigationBar.scrollEdgeAppearance = appearance
-        navigationBar.standardAppearance = appearance
-        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor];
+            UINavigationBar.appearance().isTranslucent = navBarTranslucent
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = navBarColor
+            appearance.shadowColor = navBarColor
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor]
+            navigationBar.scrollEdgeAppearance = appearance
+            navigationBar.standardAppearance = appearance
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor];
         } else {
             navigationController?.navigationBar.setBackgroundImage(UIImage(color: navBarColor), for: .default)
             navigationController?.navigationBar.shadowImage = UIImage()
@@ -39,28 +39,28 @@ class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationCon
             navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor];
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         makeNavBar()
-
+        
         rootVC = viewControllers.first
-
+        
         delegate = self
-
+        
         interactivePopGestureRecognizer?.isEnabled = true
         interactivePopGestureRecognizer?.delegate = self
     }
-
+    
     private func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return viewControllers.count > 1
     }
-
+    
     @objc func back() {
         popViewController(animated: true)
     }
-
+    
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController == rootVC {
             return
@@ -72,7 +72,10 @@ class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationCon
                 return
             }
         }
-        var image = UIImage(systemName: backImageName)
+        var image: UIImage?
+        if #available(iOS 13.0, *) {
+            image = UIImage(systemName: backImageName)
+        }
         if image == nil {
             image = UIImage(named: backImageName)
         }
@@ -82,7 +85,7 @@ class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationCon
         leftItems.insert(item, at: 0)
         viewController.navigationItem.leftBarButtonItems = leftItems
     }
-
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         for vc in viewControllers {
             for item in (vc.navigationItem.leftBarButtonItems ?? []) {
