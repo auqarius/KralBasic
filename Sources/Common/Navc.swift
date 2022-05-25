@@ -22,6 +22,7 @@ class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationCon
     var navBarTranslucent: Bool = true
 
     fileprivate func makeNavBar() {
+        if #available(iOS 13.0, *) {
         UINavigationBar.appearance().isTranslucent = navBarTranslucent
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -31,6 +32,12 @@ class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationCon
         navigationBar.scrollEdgeAppearance = appearance
         navigationBar.standardAppearance = appearance
         navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor];
+        } else {
+            navigationController?.navigationBar.setBackgroundImage(UIImage(color: navBarColor), for: .default)
+            navigationController?.navigationBar.shadowImage = UIImage()
+            navigationController?.navigationBar.isTranslucent = false
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: tintColor];
+        }
     }
 
     override func viewDidLoad() {

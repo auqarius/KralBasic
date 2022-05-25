@@ -641,7 +641,7 @@ public extension Date {
 /// MARK: - 时间差计算
 /// 这里使用了一个基准时间：startDate，主要是为了避免时区带来的天、周、月数量计算差
 /// 所有的计算，都是在 startDate 的基础上计算，然后再算差值，保证数据正确
-extension Date {
+public extension Date {
     
     /// 周一到周日
     enum Weekday: Int {

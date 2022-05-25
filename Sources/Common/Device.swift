@@ -50,7 +50,11 @@ extension UIScreen {
     }
 
     /// tabbar 的内容高度
-    var tabBarContentHeight: CGFloat = 49
+    var tabBarContentHeight: CGFloat {
+        get {
+            return  49
+        }
+    }
 
     /// tabbar 的高度
     var tabBarHeight: CGFloat {
@@ -60,7 +64,11 @@ extension UIScreen {
     }
 
     /// toolbar 的内容高度
-    var toolbarContentHeight: CGFloat = 49
+    var toolbarContentHeight: CGFloat {
+        get {
+            return  49
+        }
+    }
 
     /// toolbar 的高度
     var toolBarHeight: CGFloat {
@@ -218,17 +226,9 @@ extension UIDevice {
     static let isiOS14Family = (Float(UIDevice.current.systemVersion)! >= Float(14.0)) && (Float(UIDevice.current.systemVersion)! < Float(15.0))
     static let isiOS15Family = (Float(UIDevice.current.systemVersion)! >= Float(15.0)) && (Float(UIDevice.current.systemVersion)! < Float(16.0))
     
-    static var systemName: String {
-        return UIDevice.current.systemName
-    }
-    
-    static var systemVersion: String {
-        return UIDevice.current.systemVersion
-    }
-    
     static var sysNameVersion: String {
         get {
-            return systemName + " " + systemVersion
+            return current.systemName + " " + current.systemVersion
         }
     }
     
