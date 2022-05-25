@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Objc
+import KralObjc
 
 public extension Date {
     
