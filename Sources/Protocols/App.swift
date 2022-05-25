@@ -102,12 +102,17 @@ public extension AppInfos {
     }
     
     static func showReviewInApp() {
-        let activeScenes = UIApplication.shared.connectedScenes.filter { $0.activationState == .foregroundActive }
-        let windowScene = activeScenes.first { $0 is UIWindowScene }
-        
-        if let scene = windowScene as? UIWindowScene {
-            SKStoreReviewController.requestReview(in: scene)
+        if #available(iOS 13.0, *) {
+            let activeScenes = UIApplication.shared.connectedScenes.filter { $0.activationState == .foregroundActive }
+            let windowScene = activeScenes.first { $0 is UIWindowScene }
+            
+            if let scene = windowScene as? UIWindowScene {
+                SKStoreReviewController.requestReview(in: scene)
+            }
+        } else {
+            SKStoreReviewController.requestReview()
         }
+        
     }
     
     static func openUrl(_ url: Any) {
@@ -121,8 +126,12 @@ public extension AppInfos {
         }
         
         if let availableURL = realURL {
-            UIApplication.shared.open(availableURL, options: [:]) { (completed) in
-                
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(availableURL, options: [:]) { (completed) in
+                    
+                }
+            } else {
+                UIApplication.shared.open(availableURL)
             }
         }
     }
