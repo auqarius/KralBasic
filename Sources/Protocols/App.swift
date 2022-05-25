@@ -107,7 +107,11 @@ public extension AppInfos {
             let windowScene = activeScenes.first { $0 is UIWindowScene }
             
             if let scene = windowScene as? UIWindowScene {
-                SKStoreReviewController.requestReview(in: scene)
+                if #available(iOS 14.0, *) {
+                    SKStoreReviewController.requestReview(in: scene)
+                } else {
+                    SKStoreReviewController.requestReview()
+                }
             }
         } else {
             SKStoreReviewController.requestReview()
