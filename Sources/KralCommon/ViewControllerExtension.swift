@@ -13,12 +13,12 @@ import MessageUI
 import ObjectiveC.runtime
 
 
-public extension UIViewController {
+extension UIViewController {
     
     /// 从 storyboard 创建 viewController，需要在 SB 中 vc 的 identifier 是 vc 的类名
     /// - Parameter name: storyboard 的名字，不传则为 vc 的类名
     /// - Returns: 返回创建好的实例
-    static func loadFromSB(_ name: String? = nil) -> Self {
+    public static func loadFromSB(_ name: String? = nil) -> Self {
         return UIStoryboard(name: name ?? string, bundle: Bundle.main).instantiateViewController(withIdentifier: string) as! Self
     }
     
@@ -28,7 +28,7 @@ public extension UIViewController {
 
 private var kMailSentBlockIdentifier = "kMailSentBlockIdentifier"
 
-public extension UIViewController {
+extension UIViewController {
     
     enum MailSendStatus: Int {
         case cancelled = 0
@@ -49,7 +49,7 @@ public extension UIViewController {
     /// 发送 Email
     /// - Parameter address: Email 地址
     /// - Returns: 是否成功
-    func sendEmailTo(_ address: String, mailSentBlock: @escaping (MailSendStatus, Error?) -> ()) -> Bool {
+    public func sendEmailTo(_ address: String, mailSentBlock: @escaping (MailSendStatus, Error?) -> ()) -> Bool {
         guard MFMailComposeViewController.canSendMail() else {
             UIPasteboard.general.string = address
             return false
@@ -68,7 +68,7 @@ public extension UIViewController {
 
 extension UIViewController: MFMailComposeViewControllerDelegate {
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
         if let mailSentBlock = mailSentBlock {
             mailSentBlock(MailSendStatus(rawValue: result.rawValue)!, error)

@@ -11,15 +11,15 @@ import UIKit
 
 public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
     
-    var rootVC: UIViewController!
+    public var rootVC: UIViewController!
     
-    var navBarColor: UIColor = .white
+    public var navBarColor: UIColor = .white
     
-    var tintColor: UIColor = .black
+    public var tintColor: UIColor = .black
     
-    var backImageName: String = "chevron.left"
+    public  var backImageName: String = "chevron.left"
     
-    var navBarTranslucent: Bool = true
+    public var navBarTranslucent: Bool = true
     
     fileprivate func makeNavBar() {
         if #available(iOS 13.0, *) {
@@ -40,7 +40,7 @@ public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINaviga
         }
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         makeNavBar()
@@ -61,7 +61,7 @@ public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINaviga
         popViewController(animated: true)
     }
     
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+    public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController == rootVC {
             return
         }
@@ -86,7 +86,7 @@ public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINaviga
         viewController.navigationItem.leftBarButtonItems = leftItems
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         for vc in viewControllers {
             for item in (vc.navigationItem.leftBarButtonItems ?? []) {
                 item.tintColor = tintColor

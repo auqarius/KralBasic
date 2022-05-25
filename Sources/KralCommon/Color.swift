@@ -10,9 +10,9 @@
 import Foundation
 import UIKit
 
-public extension UIColor {
+extension UIColor {
     
-    convenience init(hex: String, alpha: CGFloat = 1.0) {
+    public convenience init(hex: String, alpha: CGFloat = 1.0) {
         var hexFormatted: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
 
             if hexFormatted.hasPrefix("#") {
@@ -30,19 +30,19 @@ public extension UIColor {
                       alpha: alpha)
     }
     
-    var light: UIColor {
+    public var light: UIColor {
         get {
             return alpha(0.1)
         }
     }
     
-    var dark: UIColor {
+    public var dark: UIColor {
         get {
             return brightness(0.7)
         }
     }
     
-    func brightness(_ brightness: CGFloat = 1) -> UIColor {
+    public func brightness(_ brightness: CGFloat = 1) -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
@@ -51,7 +51,7 @@ public extension UIColor {
         return UIColor(hue: hue, saturation: saturation, brightness: brightness*brightness, alpha: alpha)
     }
     
-    func hueWithOffset(_ offset: CGFloat) -> UIColor {
+    public func hueWithOffset(_ offset: CGFloat) -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
@@ -64,7 +64,7 @@ public extension UIColor {
         return UIColor(hue: hue, saturation: saturation, brightness: brightness*brightness, alpha: alpha)
     }
     
-    func lightColor(_ light: CGFloat = 1) -> UIColor {
+    public func lightColor(_ light: CGFloat = 1) -> UIColor {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -77,7 +77,7 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
     
-    func darkColor(_ dark: CGFloat = 1) -> UIColor {
+    public func darkColor(_ dark: CGFloat = 1) -> UIColor {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -90,7 +90,7 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: 1)
     }
     
-    func alpha(_ alpha: CGFloat = 0.1) -> UIColor {
+    public func alpha(_ alpha: CGFloat = 0.1) -> UIColor {
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
@@ -98,7 +98,7 @@ public extension UIColor {
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    func complementColor() -> UIColor {
+    public func complementColor() -> UIColor {
         var hue: CGFloat = 0
         var saturation: CGFloat = 0
         var brightness: CGFloat = 0
@@ -122,10 +122,10 @@ public extension UIColor {
     }
 }
 
-public extension UIImage {
+extension UIImage {
     
     /// 创建一张纯色图片
-    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         color.setFill()
