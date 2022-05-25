@@ -1,5 +1,5 @@
 import XCTest
-@testable import Common
+@testable import KralCommon
 
 
 final class KralBasicTests: XCTestCase {
