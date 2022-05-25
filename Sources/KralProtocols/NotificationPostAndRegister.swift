@@ -42,7 +42,7 @@
 
 import Foundation
 
-protocol NotificationPostAndRegister {
+public protocol NotificationPostAndRegister {
     
     var name: NSNotification.Name { get }
     
@@ -53,7 +53,7 @@ protocol NotificationPostAndRegister {
     func remove(observer: Any)
 }
 
-extension NotificationPostAndRegister {
+public extension NotificationPostAndRegister {
     
     func register(observer: Any, selector: Selector) {
         NotificationCenter.default.addObserver(observer, selector: selector, name: name, object: nil)

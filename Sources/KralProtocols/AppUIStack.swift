@@ -46,7 +46,7 @@
 import Foundation
 import UIKit
 
-protocol AppUIStack {
+public protocol AppUIStack {
     
     /// 获取当前 keyWindow，iPad 多窗口也可以正确获取
     static var keyWindow: UIWindow? { get }
@@ -68,7 +68,7 @@ protocol AppUIStack {
     
 }
 
-extension AppUIStack {
+public extension AppUIStack {
     
     /// 获取当前 keyWindow，iPad 多窗口也可以正确获取
     static var keyWindow: UIWindow? {

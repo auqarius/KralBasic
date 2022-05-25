@@ -45,7 +45,7 @@ public func alert(viewController: UIViewController, title: String = "", message:
     }
 }
 
-func actionSheet(viewController: UIViewController, sourceView: UIView? = nil, title: String? = nil, message: String? = nil, titles: [String] = [], destructiveTitles: [String] = [], cancelTitle: String = "", confirm: @escaping (String) -> (), cancel:  (() -> ())? = nil) {
+public func actionSheet(viewController: UIViewController, sourceView: UIView? = nil, title: String? = nil, message: String? = nil, titles: [String] = [], destructiveTitles: [String] = [], cancelTitle: String = "", confirm: @escaping (String) -> (), cancel:  (() -> ())? = nil) {
     DispatchQueue.main.async {
         let actionSheet = UIAlertController.init(title: title, message: message, preferredStyle: .actionSheet)
         actionSheet.popoverPresentationController?.sourceView = sourceView
@@ -78,7 +78,7 @@ func actionSheet(viewController: UIViewController, sourceView: UIView? = nil, ti
     }
 }
 
-func alertWithInput(from vc: UIViewController, title: String, msg: String, placeholder: String, cancelTitle: String = "Cancel", confirmTitle: String = "Confirm", completion: @escaping (String) -> ()) {
+public func alertWithInput(from vc: UIViewController, title: String, msg: String, placeholder: String, cancelTitle: String = "Cancel", confirmTitle: String = "Confirm", completion: @escaping (String) -> ()) {
     let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
     
     alert.addTextField { (textField) in

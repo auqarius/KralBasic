@@ -13,7 +13,7 @@ import MessageUI
 import ObjectiveC.runtime
 
 
-extension UIViewController {
+public extension UIViewController {
     
     /// 从 storyboard 创建 viewController，需要在 SB 中 vc 的 identifier 是 vc 的类名
     /// - Parameter name: storyboard 的名字，不传则为 vc 的类名
@@ -28,7 +28,7 @@ extension UIViewController {
 
 private var kMailSentBlockIdentifier = "kMailSentBlockIdentifier"
 
-extension UIViewController {
+public extension UIViewController {
     
     enum MailSendStatus: Int {
         case cancelled = 0
@@ -68,7 +68,7 @@ extension UIViewController {
 
 extension UIViewController: MFMailComposeViewControllerDelegate {
     
-    public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true)
         if let mailSentBlock = mailSentBlock {
             mailSentBlock(MailSendStatus(rawValue: result.rawValue)!, error)

@@ -9,7 +9,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     var isEmail: Bool {
         get {
             let types: NSTextCheckingResult.CheckingType = [NSTextCheckingResult.CheckingType.link]
@@ -61,7 +61,7 @@ extension String {
 }
 
 // MARK: - 正则匹配 Regex Match
-struct MyRegex {
+public struct MyRegex {
     
     enum MatchType: String {
         /// Email 校验正则表达式

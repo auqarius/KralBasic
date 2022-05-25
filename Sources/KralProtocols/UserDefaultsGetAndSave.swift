@@ -53,7 +53,7 @@
 
 import Foundation
 
-protocol UserDefaultsGetAndSave {
+public protocol UserDefaultsGetAndSave {
     var key: String { get }
     
     func remove()
@@ -83,7 +83,7 @@ protocol UserDefaultsGetAndSave {
     func bool() -> Bool
 }
 
-extension UserDefaultsGetAndSave {
+public extension UserDefaultsGetAndSave {
     func remove() {
         UserDefaults.standard.removeObject(forKey: key)
     }

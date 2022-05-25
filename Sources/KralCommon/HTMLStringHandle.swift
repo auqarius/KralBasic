@@ -301,7 +301,7 @@ extension String {
     /// Returns a new string made by replacing in the `String`
     /// all HTML character entity references with the corresponding
     /// character.
-    func decodeHTML() -> String {
+    public func decodeHTML() -> String {
         var result = ""
         var position = startIndex
         

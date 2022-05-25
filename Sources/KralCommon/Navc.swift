@@ -9,7 +9,7 @@
 
 import UIKit
 
-class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
+public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
     
     var rootVC: UIViewController!
     

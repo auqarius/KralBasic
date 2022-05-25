@@ -10,13 +10,13 @@
 import Foundation
 import UIKit
 
-struct TextLineType {
+public struct TextLineType {
     static let delete = NSAttributedString.Key.strikethroughStyle
     static let underLine = NSAttributedString.Key.underlineStyle
     static let noLine = ""
 }
 
-extension UILabel {
+public extension UILabel {
     
     /// 设置所有内容为删除线
     func textWithDeleteLine(text: String, textColor: UIColor = .lightGray, font: UIFont = UIFont.systemFont(ofSize: 12.0), alignment: NSTextAlignment = .left) {
@@ -80,7 +80,7 @@ extension UILabel {
     
 }
 
-extension String {
+public extension String {
     
     /// 将一段文字转化为全部带下划线的 NSAttributedString
     ///
@@ -211,7 +211,7 @@ extension UILabel {
         }
     }
     
-    func addTap(_ tap: @escaping () -> (), forSubString subString: String) {
+    public func addTap(_ tap: @escaping () -> (), forSubString subString: String) {
         actions[subString] = tap
         
         isUserInteractionEnabled = true

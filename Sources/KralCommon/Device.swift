@@ -12,7 +12,7 @@ import DeviceKit
 import UIKit
 
 // MARK: - UIScreen Extension
-extension UIScreen {
+public extension UIScreen {
     
     /// 状态栏高度
     var statusBarHeight: CGFloat {
@@ -168,7 +168,7 @@ extension UIScreen {
 }
 
 // MARK: - UIDevice Extension
-extension UIDevice {
+public extension UIDevice {
     
     /// 是否是横屏
     static var isLandScape: Bool {

@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 /// MARK: - 获取某个类的字符串类名
-extension NSObject {
+public extension NSObject {
     static var string: String {
         get {
             return String(describing: self)
@@ -20,7 +20,7 @@ extension NSObject {
 }
 
 /// MARK: - 延迟执行
-class Delay {
+public class Delay {
     
     typealias Task = (_ cancel : Bool) -> Void
 

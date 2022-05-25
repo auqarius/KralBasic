@@ -12,7 +12,7 @@ import UIKit
 import ObjectiveC.runtime
 
 /// 快速使用全项目都将要用到的弹簧动画
-func bounceAnimation(withDuration duration: TimeInterval = 0.5,
+public func bounceAnimation(withDuration duration: TimeInterval = 0.5,
                      delay: TimeInterval = 0,
                      usingSpringWithDamping dampingRatio: CGFloat = 0.65,
                      initialSpringVelocity velocity: CGFloat = 0,
@@ -32,7 +32,7 @@ func bounceAnimation(withDuration duration: TimeInterval = 0.5,
 }
 
 /// 快速使用全项目都将要用到的普通动画
-func viewAnimation(withDuration duration: TimeInterval = 0.3,
+public func viewAnimation(withDuration duration: TimeInterval = 0.3,
                    delay: TimeInterval = 0,
                    options: UIView.AnimationOptions = [],
                    animations: @escaping () -> Swift.Void,
@@ -49,7 +49,7 @@ func viewAnimation(withDuration duration: TimeInterval = 0.3,
 }
 
 
-extension UIView {
+public extension UIView {
     
     static func loadFromNib(_ nibname: String? = nil) -> Self {
         let loadName = nibname == nil ? "\(self)" : nibname!
@@ -65,7 +65,7 @@ private var kTappedIdentifier = "kTappedIdentifier"
 
 extension UIView {
     
-    func addTap(tapcount: Int = 1, tappedBlock: @escaping () -> ()) {
+    public func addTap(tapcount: Int = 1, tappedBlock: @escaping () -> ()) {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapped))
         self.tappedBlock = tappedBlock
         tap.numberOfTapsRequired = tapcount
@@ -108,7 +108,7 @@ extension UIView {
 
 import QuartzCore
 
-enum GradientDirection {
+public enum GradientDirection {
     case rightToLeft, leftToRight, topToBottom, bottomToTop
     
     func setGradienLayer(_ layer: CAGradientLayer) {
@@ -147,7 +147,7 @@ fileprivate func defaultLocations(_ count: Int) -> [NSNumber] {
     return locations
 }
 
-class GradientLayer: CAGradientLayer {}
+public class GradientLayer: CAGradientLayer {}
 
 extension UIView {
     
@@ -161,7 +161,7 @@ extension UIView {
         return nil
     }
     
-    func addGradient(cornerRadius: CGFloat, direction: GradientDirection = .leftToRight, colors: [UIColor], locations: [Double]? = nil, rect: CGRect? = nil) {
+    public func addGradient(cornerRadius: CGFloat, direction: GradientDirection = .leftToRight, colors: [UIColor], locations: [Double]? = nil, rect: CGRect? = nil) {
         
         CATransaction.begin()
         CATransaction.setDisableActions(true)

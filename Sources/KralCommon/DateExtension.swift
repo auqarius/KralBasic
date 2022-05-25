@@ -790,7 +790,7 @@ public extension Date {
     
 }
 
-extension Array where Element == Date {
+public extension Array where Element == Date {
     
     func hasSameDay(_ date: Date) -> Bool {
         for existDate in self {
