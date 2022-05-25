@@ -13,11 +13,11 @@
 
 
 ```
-.package(url: "https://github.com/auqarius/KralBasic.git", from: "4.0.0")
+.package(url: "https://github.com/auqarius/KralBasic.git", branch: "master")
 
 // 如果你在国内，你的 xcode 访问 github 基本不通，可以使用国内镜像库
 
-.package(url: "https://gitee.com/krallee/KralBasic", from: "4.0.0")
+.package(url: "https://gitee.com/krallee/KralBasic.git", branch: "CNDependencies")
 ```
 
 
