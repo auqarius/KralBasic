@@ -29,5 +29,8 @@ let package = Package(
         .testTarget(
             name: "KralBasicTests",
             dependencies: ["Common"]),
+    ],
+    swiftLanguageVersions: [
+        .v5
     ]
 )
