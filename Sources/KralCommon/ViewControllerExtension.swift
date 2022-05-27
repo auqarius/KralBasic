@@ -30,7 +30,7 @@ private var kMailSentBlockIdentifier = "kMailSentBlockIdentifier"
 
 public extension UIViewController {
     
-    enum MailSendStatus: Int {
+    public enum MailSendStatus: Int {
         case cancelled = 0
         case saved = 1
         case sent = 2

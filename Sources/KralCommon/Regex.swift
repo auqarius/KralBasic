@@ -63,7 +63,7 @@ public extension String {
 // MARK: - 正则匹配 Regex Match
 public struct MyRegex {
     
-    enum MatchType: String {
+    public enum MatchType: String {
         /// Email 校验正则表达式
         case email = "[\\w!#$%&'*+/=?^_`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?"
         /// 国内电话校验正则表达式
