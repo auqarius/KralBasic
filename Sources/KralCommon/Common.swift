@@ -22,7 +22,7 @@ public extension NSObject {
 /// MARK: - 延迟执行
 public class Delay {
     
-    typealias Task = (_ cancel : Bool) -> Void
+    public typealias Task = (_ cancel : Bool) -> Void
 
     public static func delayTask(_ time: TimeInterval, task: @escaping ()->()) {
        let _ = delay(time, task: task)
