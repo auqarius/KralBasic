@@ -24,11 +24,11 @@ public class Delay {
     
     typealias Task = (_ cancel : Bool) -> Void
 
-    static func delayTask(_ time: TimeInterval, task: @escaping ()->()) {
+    public static func delayTask(_ time: TimeInterval, task: @escaping ()->()) {
        let _ = delay(time, task: task)
     }
 
-    static func delay(_ time: TimeInterval, task: @escaping ()->()) ->  Task? {
+    public static func delay(_ time: TimeInterval, task: @escaping ()->()) ->  Task? {
         
         func dispatch_later(block: @escaping ()->()) {
             let t = DispatchTime.now() + time
@@ -58,7 +58,7 @@ public class Delay {
         return result
     }
 
-    static func cancel(_ task: Task?) {
+    public static func cancel(_ task: Task?) {
         task?(true)
     }
 }

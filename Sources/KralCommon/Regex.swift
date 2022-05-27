@@ -10,7 +10,7 @@
 import Foundation
 
 public extension String {
-    var isEmail: Bool {
+    public var isEmail: Bool {
         get {
             let types: NSTextCheckingResult.CheckingType = [NSTextCheckingResult.CheckingType.link]
             let dataDetector = try! NSDataDetector(types: types.rawValue)
@@ -27,13 +27,13 @@ public extension String {
         }
     }
     
-    var isNumber: Bool {
+    public var isNumber: Bool {
         get {
             return MyRegex.match(string: self, type: .number)
         }
     }
     
-    var isPhone: Bool {
+    public var isPhone: Bool {
         get {
             let types: NSTextCheckingResult.CheckingType = [NSTextCheckingResult.CheckingType.phoneNumber]
             let dataDetector = try! NSDataDetector(types: types.rawValue)
@@ -52,7 +52,7 @@ public extension String {
         }
     }
     
-    var isIpAddress: Bool {
+    public var isIpAddress: Bool {
         get {
             return MyRegex.match(string: self, type: .ipaddress)
         }
@@ -72,7 +72,6 @@ public struct MyRegex {
         case ipaddress = "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
         /// 数字校验正则表达式
         case number = "^[0-9]*$"
-        ///
     }
     
     let regex: NSRegularExpression?
@@ -104,7 +103,7 @@ public struct MyRegex {
                               range: NSMakeRange(0, (input as NSString).length))
     }
     
-    static func match(string: String, type: MatchType) -> Bool {
+    public static func match(string: String, type: MatchType) -> Bool {
         return MyRegex(type.rawValue).match(input: string)
     }
 }

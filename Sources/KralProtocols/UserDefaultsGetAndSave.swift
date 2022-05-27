@@ -30,7 +30,7 @@
          }
      }
      
-     var isFirstOpen: Bool {
+     static var isFirstOpen: Bool {
          get {
              return UDKeys.isFirstOpen.bool()
          }

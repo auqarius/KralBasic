@@ -12,14 +12,14 @@ import KralObjc
 public extension Date {
     
     /// 系统时区的当前时间
-    static var nowLocalTime: Date {
+    public static var nowLocalTime: Date {
         get {
             return Date().nowTimeZoneDate
         }
     }
     
     /// 系统时区的时间
-    var nowTimeZoneDate: Date {
+    public var nowTimeZoneDate: Date {
         get {
             let timezone = TimeZone.current
             let timeInterval = timezone.secondsFromGMT()
@@ -29,7 +29,7 @@ public extension Date {
     }
     
     /// 0 时区时间
-    var gmtTimeZoneDate: Date {
+    public var gmtTimeZoneDate: Date {
         get {
             let timezone = TimeZone.current
             let timeInterval = timezone.secondsFromGMT()
@@ -45,7 +45,7 @@ public extension Date {
     /// 在这里，认为 self 是当前时区的时间
     /// 这里所有的 formatter 使用的是 c 语言的
     /// "%Y-%m-%d %H:%M:%S"
-    var hmString: String {
+    public var hmString: String {
         get {
            return HBDate.string(from: self, formatter: "%H:%M")
         }
@@ -53,21 +53,21 @@ public extension Date {
     
     /// 2018-08-08 08:08:08
     /// 在这里，认为 self 是当前时区的时间
-    var timeString: String {
+    public var timeString: String {
         get {
             return HBDate.string(from: self, formatter: "%Y-%m-%d %H:%M:%S")
         }
     }
     
     /// 2018-08-08
-    var ymdString: String {
+    public var ymdString: String {
         get {
             return HBDate.string(from: self, formatter: "%Y-%m-%d")
         }
     }
     
     /// 2018-08-08
-    var myString: String {
+    public var myString: String {
         get {
             return HBDate.string(from: self, formatter: "%m.%Y")
         }
@@ -75,7 +75,7 @@ public extension Date {
     
     /// 年
     /// 在这里，认为 self 是当前时区的时间
-    var year: Int {
+    public var year: Int {
         get {
             return HBDate.string(from: self, formatter: "%Y").int
         }
@@ -83,14 +83,14 @@ public extension Date {
     
     /// 月
     /// 在这里，认为 self 是当前时区的时间
-    var month: Int {
+    public var month: Int {
         get {
             return HBDate.string(from: self, formatter: "%m").int
         }
     }
     
     /// 年月 Int 值，例如 201808
-    var yearMonthInt: Int {
+    public var yearMonthInt: Int {
         get {
             return HBDate.string(from: self, formatter: "%Y%m").int
         }
@@ -98,7 +98,7 @@ public extension Date {
     
     /// 日  01 、 02 、12
     /// 在这里，认为 self 是当前时区的时间
-    var day: Int {
+    public var day: Int {
         get {
             return HBDate.string(from: self, formatter: "%d").int
         }
@@ -106,7 +106,7 @@ public extension Date {
     
     /// 单个日   1、 2、 12
     /// 在这里，认为 self 是当前时区的时间
-    var singleDay: Int {
+    public var singleDay: Int {
         get {
             return  HBDate.string(from: self, formatter: "%d").int
         }
@@ -114,7 +114,7 @@ public extension Date {
     
     /// 小时
     /// 在这里，认为 self 是当前时区的时间
-    var hour: Int {
+    public var hour: Int {
         get {
             return  HBDate.string(from: self, formatter: "%H").int
         }
@@ -122,7 +122,7 @@ public extension Date {
     
     /// 分钟
     /// 在这里，认为 self 是当前时区的时间
-    var min: Int {
+    public var min: Int {
         get {
             return HBDate.string(from: self, formatter: "%M").int
         }
@@ -130,7 +130,7 @@ public extension Date {
     
     /// 秒
     /// 在这里，认为 self 是当前时区的时间
-    var second: Int {
+    public var second: Int {
         get {
             return HBDate.string(from: self, formatter: "%S").int
         }
@@ -138,7 +138,7 @@ public extension Date {
     
     /// 月日：August 3
     /// 在这里，认为 self 是当前时区的时间
-    var monthDay: String {
+    public var monthDay: String {
         get {
             let dateFormatter = DateFormatter.default("MMMM d")
             dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
@@ -148,7 +148,7 @@ public extension Date {
     }
     
     /// 月：August
-    var monthString: String {
+    public var monthString: String {
         get {
             let dateFormatter = DateFormatter.default("MMMM")
             
@@ -157,7 +157,7 @@ public extension Date {
     }
     
     /// 月（简写）：Aug
-    var simpleMonthString: String {
+    public var simpleMonthString: String {
         get {
             let dateFormatter = DateFormatter.default("MMM")
             
@@ -167,7 +167,7 @@ public extension Date {
     
     /// 所在周的第一天到最后一天
     /// 例如：08.12-08.18    
-    func thisWeekDurationString(startOfWeek: Weekday = .monday) -> String {
+    public func thisWeekDurationString(startOfWeek: Weekday = .monday) -> String {
         let firstDay = weekDates(startOfWeek: startOfWeek).first!
         let lastDay = weekDates(startOfWeek: startOfWeek).last!
         
@@ -176,7 +176,7 @@ public extension Date {
     
     /// 简写月日：08.3
     /// 在这里，认为 self 是当前时区的时间
-    var simpleMonthDay: String {
+    public var simpleMonthDay: String {
         get {
             return HBDate.string(from: self, formatter: "%m.%d")
         }
@@ -184,7 +184,7 @@ public extension Date {
     
     /// 年月：2018-08
     /// 在这里，认为 self 是当前时区的时间
-    var yearMonth: String {
+    public var yearMonth: String {
         get {
             return HBDate.string(from: self, formatter: "%Y-%m")
         }
@@ -192,7 +192,7 @@ public extension Date {
     
     /// 某个日期的开始，即当天的 00:00:01
     /// 在这里，认为 self 是当前时区的时间
-    var startOfDate: Date {
+    public var startOfDate: Date {
         get {
             var selfString = HBDate.string(from: self, formatter: "%Y-%m-%d")
             selfString += " 00:00:00"
@@ -205,7 +205,7 @@ public extension Date {
     
     /// 某个日期的正午，即当天的 12:00:00
     /// 在这里，认为 self 是当前时区的时间
-    var middleOfDate: Date {
+    public var middleOfDate: Date {
         get {
             var selfString = HBDate.string(from: self, formatter: "%Y-%m-%d")
             selfString += " 12:00:00"
@@ -218,7 +218,7 @@ public extension Date {
     
     /// 某个日期的结尾，即当天的 23:59:59
     /// 在这里，认为 self 是当前时区的时间
-    var endOfDate: Date {
+    public var endOfDate: Date {
         get {
             var selfString = HBDate.string(from: self, formatter: "%Y-%m-%d")
             selfString += " 23:59:59"
@@ -230,21 +230,21 @@ public extension Date {
     }
     
     /// 下个月的今天
-    var nextMonth: Date {
+    public var nextMonth: Date {
         get {
             return monthAfterMonths(1)
         }
     }
     
     /// 上个月的今天
-    var lastMonth: Date {
+    public var lastMonth: Date {
         get {
             return monthAfterMonths(-1)
         }
     }
     
     /// 去年的今天
-    var lastYear: Date {
+    public var lastYear: Date {
         get {
             return monthAfterMonths(-12)
         }
@@ -256,7 +256,7 @@ public extension Date {
     ///
     /// - Parameter months: 几个月份
     /// - Returns: 日期
-    func monthAfterMonths(_ months: Int) -> Date {
+    public func monthAfterMonths(_ months: Int) -> Date {
         let calendar = Calendar(identifier: .gregorian)
         let datecomps = DateComponents(month: months)
         
@@ -264,7 +264,7 @@ public extension Date {
     }
     
     /// 下周
-    var nextWeek: Date {
+    public var nextWeek: Date {
         get {
             return self.dateAfterDays(7)
         }
@@ -274,7 +274,7 @@ public extension Date {
     ///
     /// - Parameter weeks: 几个周
     /// - Returns: 日期
-    func weekDateAfterWeeks(_ weeks: Int) -> Date {
+    public func weekDateAfterWeeks(_ weeks: Int) -> Date {
         let calendar = Calendar(identifier: .gregorian)
         let datecomps = DateComponents(weekOfYear: weeks)
         
@@ -282,33 +282,33 @@ public extension Date {
     }
     
     /// 当月的第一天
-    var firstDayAtMonth: Date {
+    public var firstDayAtMonth: Date {
         get {
             return Date.firstDayOfYear(year, month: month)
         }
     }
     
     /// 当月的最后一天
-    var endDayAtMonth: Date {
+    public var endDayAtMonth: Date {
         get {
             return Date.endDayOfYear(year, month: month)
         }
     }
     
     /// 本周第一天
-    func firstDayThisWeek(startOfWeek: Weekday = .monday) -> Date {
+    public func firstDayThisWeek(startOfWeek: Weekday = .monday) -> Date {
         return weekDates(startOfWeek: startOfWeek).first!
     }
     
     /// 本周最后一天
-    func lastDayThisWeek(startOfWeek: Weekday = .monday) -> Date {
+    public func lastDayThisWeek(startOfWeek: Weekday = .monday) -> Date {
         return weekDates(startOfWeek: startOfWeek).last!
     }
     
     /// 当前日期的同一周的所有日期
     /// - Parameter startOfWeek: 周的开始时间
     /// - Returns: 所有本周的七个日期
-    func weekDates(startOfWeek: Weekday = .monday) -> [Date] {
+    public func weekDates(startOfWeek: Weekday = .monday) -> [Date] {
         var result: [Date] = [Date]()
         
         for i in -7..<7 {
@@ -324,7 +324,7 @@ public extension Date {
     }
     
     /// 过去七天
-    var last7Dates: [Date] {
+    public var last7Dates: [Date] {
         get {
             var result: [Date] = [Date]()
             
@@ -338,7 +338,7 @@ public extension Date {
     }
     
     /// 当前日期的同一个月的所有日期
-    var monthDates: [Date] {
+    public var monthDates: [Date] {
         get {
             var result: [Date] = [Date]()
             
@@ -354,7 +354,7 @@ public extension Date {
     }
     
     /// 当前日期所在年的每月的这一天
-    var thisYearMonthFirstDates: [Date] {
+    public var thisYearMonthFirstDates: [Date] {
         get {
             var result: [Date] = [Date]()
             
@@ -370,7 +370,7 @@ public extension Date {
     }
     
     /// 本年所有日期
-    var thisYearDates: [Date] {
+    public var thisYearDates: [Date] {
         get {
             let year = self.year
             let results = Date.datesAtYear(year)
@@ -383,7 +383,7 @@ public extension Date {
     ///
     /// - Parameter year: 年
     /// - Returns: 日期
-    static func datesAtYear(_ year: Int) -> [Date] {
+    public static func datesAtYear(_ year: Int) -> [Date] {
         let firstDay = "\(year)-01-01 00:00:00"
         let firstDate = HBDate.date(from: firstDay)
         
@@ -400,7 +400,7 @@ public extension Date {
     }
     
     /// 过去 365 天每一天的日期
-    var past365Days: [Date] {
+    public var past365Days: [Date] {
         get {
             let firstDate = self
             
@@ -419,7 +419,7 @@ public extension Date {
     ///
     /// - Parameter date: 目标日期
     /// - Returns: 所有日期
-    func datesToDate(_ date: Date) -> [Date] {
+    public func datesToDate(_ date: Date) -> [Date] {
         var startDate = self
         var endDate = date
         
@@ -440,36 +440,36 @@ public extension Date {
     }
     
     /// 是否是今天
-    var isToday: Bool {
+    public var isToday: Bool {
         get {
             return isSameDayTo(Date.nowLocalTime)
         }
     }
     
     /// 是否是昨天
-    var isYesterday: Bool {
+    public var isYesterday: Bool {
         get {
             return isSameDayTo(Date.nowLocalTime.dateAfterDays(-1))
         }
     }
     
     /// 是否和某一天是同一个月
-    func isSameMonthTo(_ date: Date) -> Bool {
+    public func isSameMonthTo(_ date: Date) -> Bool {
         return yearMonth == date.yearMonth
     }
     
     /// 是否和某天是同一周
-    func isSameWeekTo(_ date: Date, startWeekDay: Weekday = .monday) -> Bool {
+    public func isSameWeekTo(_ date: Date, startWeekDay: Weekday = .monday) -> Bool {
         return weeksFromStart(startDayOfWeek: startWeekDay) == date.weeksFromStart(startDayOfWeek: startWeekDay)
     }
     
     /// 是否和某一天是同一天
-    func isSameDayTo(_ date: Date) -> Bool {
+    public func isSameDayTo(_ date: Date) -> Bool {
         return daysFromStart == date.daysFromStart
     }
     
     /// 是否是某一天之后，包括同一天
-    func isAfter(_ date: Date, includeDate: Bool = true) -> Bool {
+    public func isAfter(_ date: Date, includeDate: Bool = true) -> Bool {
         let selfTimerinteval = Int(timeIntervalSince1970 / (24*3600))
         let dateTimeInterval = Int(date.timeIntervalSince1970 / (24*3600))
         
@@ -481,7 +481,7 @@ public extension Date {
     }
     
     /// 是否是某一天之前，包括同一天
-    func isBefore(_ date: Date, includeDate: Bool = true) -> Bool {
+    public func isBefore(_ date: Date, includeDate: Bool = true) -> Bool {
         let selfTimerinteval = Int(timeIntervalSince1970 / (24*3600))
         let dateTimeInterval = Int(date.timeIntervalSince1970 / (24*3600))
         
@@ -505,7 +505,7 @@ public extension Date {
     ///
     /// - Parameter allSeconds: 总秒数
     /// - Returns: 格式化后的文字
-    static func secondsToHMS(_ totalSeconds: Int) -> String {
+    public static func secondsToHMS(_ totalSeconds: Int) -> String {
         if totalSeconds == 0 { return "0" }
         let seconds: Int = totalSeconds % 60
         let minutes: Int = (totalSeconds / 60) % 60
@@ -542,7 +542,7 @@ public extension Date {
     ///
     /// - Parameter totalSeconds: 总秒数
     /// - Returns: 格式化后的文字
-    static func secondsToSimpleHMS(_ totalSeconds: Int) -> String {
+    public static func secondsToSimpleHMS(_ totalSeconds: Int) -> String {
         if totalSeconds == 0 { return "0" }
         let seconds: Int = totalSeconds % 60
         let minutes: Int = (totalSeconds / 60) % 60
@@ -595,7 +595,7 @@ public extension Date {
     ///
     /// - Parameter allSeconds: 总秒数
     /// - Returns: 格式化后的文字
-    static func secondsToClock(_ totalSeconds: Int) -> String {
+    public static func secondsToClock(_ totalSeconds: Int) -> String {
         if totalSeconds <= 0 {
             return "00:00"
         }
@@ -629,7 +629,7 @@ public extension Date {
     /// 在这里，认为 self 是当前时区的时间
     ///
     /// - Returns: 天数
-    func numberOfDaysInThisMonth() -> Int {
+    public func numberOfDaysInThisMonth() -> Int {
         let calendar = Calendar(identifier: .gregorian)
         if let range = calendar.range(of: Calendar.Component.day, in: Calendar.Component.month, for: self) {
             return range.count
@@ -644,7 +644,7 @@ public extension Date {
 public extension Date {
     
     /// 周一到周日
-    enum Weekday: Int {
+    public enum Weekday: Int {
         case monday = 2
         case tuesday = 3
         case wednesday = 4
@@ -690,7 +690,7 @@ public extension Date {
     }
     
     /// 当前日期为周几
-    var weekDay: Weekday {
+    public var weekDay: Weekday {
         get {
             let calendar = Calendar.current
             let components: Set<Calendar.Component> = [Calendar.Component.weekday]
@@ -705,7 +705,7 @@ public extension Date {
     ///
     /// - Parameter days: 天数
     /// - Returns: 时间
-    func dateAfterDays(_ days: Int) -> Date {
+    public func dateAfterDays(_ days: Int) -> Date {
         let oneDay: TimeInterval = (24*60*60)
         return Date(timeInterval: oneDay, since: self)
     }
@@ -716,7 +716,7 @@ public extension Date {
     ///   - number: 多少周
     ///   - ownSelf: 是否包含当前日期
     /// - Returns: 结果
-    func lastNumberOfWeekDates(_ number: Int, ownSelf: Bool = false) -> [Date] {
+    public func lastNumberOfWeekDates(_ number: Int, ownSelf: Bool = false) -> [Date] {
         var result: [Date] = [Date]()
         let max = ownSelf ? number : number + 1
         for i in 1..<max {
@@ -738,7 +738,7 @@ public extension Date {
     ///   - number: 多少个月
     ///   - ownSelf: 是否包含当前日期
     /// - Returns: 结果
-    func lastNumberOfMonthDates(_ number: Int, ownSelf: Bool = false) -> [Date] {
+    public func lastNumberOfMonthDates(_ number: Int, ownSelf: Bool = false) -> [Date] {
         var result: [Date] = [Date]()
         let max = ownSelf ? number : number + 1
         for i in 1..<max {
@@ -760,7 +760,7 @@ public extension Date {
     ///   - year: 年
     ///   - month: 月
     /// - Returns: 日期
-    static func firstDayOfYear(_ year: Int, month: Int) -> Date {
+    public static func firstDayOfYear(_ year: Int, month: Int) -> Date {
         let dateString = "\(year)-\(month)-01 00:00:00"
         let resultDate = HBDate.date(from: dateString)
         return resultDate
@@ -772,7 +772,7 @@ public extension Date {
     ///   - year: 年
     ///   - month: 月
     /// - Returns: 日期
-    static func endDayOfYear(_ year: Int, month: Int) -> Date {
+    public static func endDayOfYear(_ year: Int, month: Int) -> Date {
         let firstDay = firstDayOfYear(year, month: month)
         let numberOfDays = firstDay.numberOfDaysInThisMonth()
         let dateString = "\(year)-\(month)-\(numberOfDays) 00:00:00"
@@ -784,7 +784,7 @@ public extension Date {
     ///
     /// - Parameter toDate: 目标日期
     /// - Returns: 天数
-    func passedDays(toDate: Date = Date.nowLocalTime) -> Int {
+    public func passedDays(toDate: Date = Date.nowLocalTime) -> Int {
         return toDate.daysFromStart  - daysFromStart + 1
     }
     
@@ -792,7 +792,7 @@ public extension Date {
 
 public extension Array where Element == Date {
     
-    func hasSameDay(_ date: Date) -> Bool {
+    public func hasSameDay(_ date: Date) -> Bool {
         for existDate in self {
             if existDate.daysFromStart == date.daysFromStart {
                 return true

@@ -52,7 +52,7 @@ public protocol AppInfos {
     static var toAppStoreUrlStr: String { get }
     
     /// 跳转 App Store 并开始编写评论的 url
-    static var wirteReviewUrlStr: String { get }
+    static var writeReviewUrlStr: String { get }
     
     /// 跳转 App Store
     static func toAppStore()
