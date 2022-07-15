@@ -10,7 +10,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "KralBasic",
-            targets: ["KralCommon", "KralProtocols"]),
+            targets: ["KralObjc", "KralCommon", "KralProtocols"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
