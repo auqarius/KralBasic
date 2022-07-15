@@ -23,7 +23,7 @@ let package = Package(
         .target(name: "KralObjc",
                dependencies: []),
         .target(name: "KralCommon",
-               dependencies: ["KralObjc"]),
+               dependencies: ["KralObjc", "DeviceKit"]),
         .target(name: "KralProtocols",
                dependencies: []),
         .testTarget(

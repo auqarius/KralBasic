@@ -8,11 +8,11 @@
 #if canImport(UIKit)
 
 import Foundation
-import DeviceKit
 import UIKit
+import DeviceKit
 
 // MARK: - UIScreen Extension
-public extension UIScreen {
+extension UIScreen {
     
     /// 状态栏高度
     public var statusBarHeight: CGFloat {
