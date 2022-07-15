@@ -12,7 +12,7 @@ import DeviceKit
 import UIKit
 
 // MARK: - UIScreen Extension
-public extension UIScreen {
+extension UIScreen {
     
     /// 状态栏高度
     public var statusBarHeight: CGFloat {
