@@ -8,8 +8,8 @@
 #if canImport(UIKit)
 
 import Foundation
-import DeviceKit
 import UIKit
+import DeviceKit
 
 // MARK: - UIScreen Extension
 extension UIScreen {
