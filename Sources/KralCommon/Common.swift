@@ -11,8 +11,8 @@ import Foundation
 import UIKit
 
 /// MARK: - 获取某个类的字符串类名
-public extension NSObject {
-    static var string: String {
+extension NSObject {
+    public static var string: String {
         get {
             return String(describing: self)
         }

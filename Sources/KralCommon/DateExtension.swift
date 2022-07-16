@@ -9,7 +9,7 @@
 import Foundation
 import KralObjc
 
-public extension Date {
+extension Date {
     
     /// 系统时区的当前时间
     public static var nowLocalTime: Date {
@@ -39,7 +39,7 @@ public extension Date {
     }
 }
 
-public extension Date {
+extension Date {
     
     /// 12:23 分秒类型的字符串
     /// 在这里，认为 self 是当前时区的时间
@@ -187,6 +187,13 @@ public extension Date {
     public var yearMonth: String {
         get {
             return HBDate.string(from: self, formatter: "%Y-%m")
+        }
+    }
+    
+    /// 这个时间的这一分钟的开始，即第 0 秒
+    public var minuteStart: Date {
+        get {
+            return HBDate.date(from: "\(year)-\(month)-\(day) \(hour):\(min):\(00)")
         }
     }
     
@@ -641,7 +648,7 @@ public extension Date {
 /// MARK: - 时间差计算
 /// 这里使用了一个基准时间：startDate，主要是为了避免时区带来的天、周、月数量计算差
 /// 所有的计算，都是在 startDate 的基础上计算，然后再算差值，保证数据正确
-public extension Date {
+extension Date {
     
     /// 周一到周日
     public enum Weekday: Int {
@@ -790,7 +797,7 @@ public extension Date {
     
 }
 
-public extension Array where Element == Date {
+extension Array where Element == Date {
     
     public func hasSameDay(_ date: Date) -> Bool {
         for existDate in self {
