@@ -1,0 +1,4 @@
+
+module KralObjc {
+    header "HBDate.h"
+}
