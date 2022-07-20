@@ -8,8 +8,8 @@
 #if canImport(UIKit)
 
 import Foundation
-import DeviceKit
 import UIKit
+import DeviceKit
 
 // MARK: - UIScreen Extension
 extension UIScreen {
@@ -168,7 +168,7 @@ extension UIScreen {
 }
 
 // MARK: - UIDevice Extension
-public extension UIDevice {
+extension UIDevice {
     
     /// 是否是横屏
     public static var isLandScape: Bool {

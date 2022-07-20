@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-public extension UIColor {
+extension UIColor {
     
     public convenience init(hex: String, alpha: CGFloat = 1.0) {
         var hexFormatted: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
@@ -122,7 +122,7 @@ public extension UIColor {
     }
 }
 
-public extension UIImage {
+extension UIImage {
     
     /// 创建一张纯色图片
     public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {

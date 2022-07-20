@@ -9,7 +9,7 @@
 
 import Foundation
 
-public extension String {
+extension String {
     public var isEmail: Bool {
         get {
             let types: NSTextCheckingResult.CheckingType = [NSTextCheckingResult.CheckingType.link]
