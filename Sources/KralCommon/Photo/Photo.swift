@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-typealias SelectedImagesBlock = ([UIImage]?) -> ()
+public typealias SelectedImagesBlock = ([UIImage]?) -> ()
 
 public class Photo: NSObject {
         
