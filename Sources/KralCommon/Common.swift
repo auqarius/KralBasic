@@ -71,4 +71,12 @@ public func impactFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle) {
     }
 }
 
+public extension CGSize {
+    var scaled: CGSize {
+        get {
+            return CGSize(width: width*UIScreen.main.scale, height: height*UIScreen.main.scale)
+        }
+    }
+}
+
 #endif
