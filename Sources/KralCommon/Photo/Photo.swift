@@ -69,7 +69,7 @@ public class Photo: NSObject {
     }
 }
 
-extension Photo: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+public extension Photo: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         // Local variable inserted by Swift 4.2 migrator.
