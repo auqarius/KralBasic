@@ -41,13 +41,21 @@ extension Date {
 
 extension Date {
     
+    /// 使用 c 语言的方法来转换 date 到字符串，这里的 formatter 的格式为 c 的格式
+    /// 详细格式文档：https://zetcode.com/articles/cdatetime/
+    ///
+    /// @param formatter "%Y-%m-%d %H:%M:%S"
+    public func hbString(formatter: String) -> String {
+        return HBDate.string(from: self, formatter: formatter)
+    }
+    
     /// 12:23 分秒类型的字符串
     /// 在这里，认为 self 是当前时区的时间
     /// 这里所有的 formatter 使用的是 c 语言的
     /// "%Y-%m-%d %H:%M:%S"
     public var hmString: String {
         get {
-           return HBDate.string(from: self, formatter: "%H:%M")
+           return hbString(formatter: "%H:%M")
         }
     }
     
@@ -55,21 +63,21 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var timeString: String {
         get {
-            return HBDate.string(from: self, formatter: "%Y-%m-%d %H:%M:%S")
+            return hbString(formatter: "%Y-%m-%d %H:%M:%S")
         }
     }
     
     /// 2018-08-08
     public var ymdString: String {
         get {
-            return HBDate.string(from: self, formatter: "%Y-%m-%d")
+            return hbString(formatter: "%Y-%m-%d")
         }
     }
     
     /// 2018-08-08
     public var myString: String {
         get {
-            return HBDate.string(from: self, formatter: "%m.%Y")
+            return hbString(formatter: "%m.%Y")
         }
     }
     
@@ -77,7 +85,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var year: Int {
         get {
-            return HBDate.string(from: self, formatter: "%Y").int
+            return hbString(formatter: "%Y").int
         }
     }
     
@@ -85,14 +93,14 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var month: Int {
         get {
-            return HBDate.string(from: self, formatter: "%m").int
+            return hbString(formatter: "%m").int
         }
     }
     
     /// 年月 Int 值，例如 201808
     public var yearMonthInt: Int {
         get {
-            return HBDate.string(from: self, formatter: "%Y%m").int
+            return hbString(formatter: "%Y%m").int
         }
     }
     
@@ -100,7 +108,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var day: Int {
         get {
-            return HBDate.string(from: self, formatter: "%d").int
+            return hbString(formatter: "%d").int
         }
     }
     
@@ -108,7 +116,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var singleDay: Int {
         get {
-            return  HBDate.string(from: self, formatter: "%d").int
+            return  hbString(formatter: "%d").int
         }
     }
     
@@ -116,7 +124,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var hour: Int {
         get {
-            return  HBDate.string(from: self, formatter: "%H").int
+            return  hbString(formatter: "%H").int
         }
     }
     
@@ -124,7 +132,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var min: Int {
         get {
-            return HBDate.string(from: self, formatter: "%M").int
+            return hbString(formatter: "%M").int
         }
     }
     
@@ -132,36 +140,34 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var second: Int {
         get {
-            return HBDate.string(from: self, formatter: "%S").int
+            return hbString(formatter: "%S").int
         }
+    }
+    
+    /// DateFormatter 的方式来转换时间，已经创建了一个默认的 dateformatter 对象保存在线程里
+    public func string(formatter: String) -> String {
+        return DateFormatter.default(formatter).string(from: self)
     }
     
     /// 月日：August 3
     /// 在这里，认为 self 是当前时区的时间
     public var monthDay: String {
         get {
-            let dateFormatter = DateFormatter.default("MMMM d")
-            dateFormatter.timeZone = TimeZone.init(secondsFromGMT: 0)
-            
-            return dateFormatter.string(from: self)
+            return string(formatter: "MMMM d")
         }
     }
     
     /// 月：August
     public var monthString: String {
         get {
-            let dateFormatter = DateFormatter.default("MMMM")
-            
-            return dateFormatter.string(from: self)
+            return string(formatter: "MMMM")
         }
     }
     
     /// 月（简写）：Aug
     public var simpleMonthString: String {
         get {
-            let dateFormatter = DateFormatter.default("MMM")
-            
-            return dateFormatter.string(from: self)
+            return string(formatter: "MMM")
         }
     }
     
@@ -178,7 +184,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var simpleMonthDay: String {
         get {
-            return HBDate.string(from: self, formatter: "%m.%d")
+            return hbString(formatter: "%m.%d")
         }
     }
     
@@ -186,7 +192,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var yearMonth: String {
         get {
-            return HBDate.string(from: self, formatter: "%Y-%m")
+            return hbString(formatter: "%Y-%m")
         }
     }
     
@@ -201,7 +207,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var startOfDate: Date {
         get {
-            var selfString = HBDate.string(from: self, formatter: "%Y-%m-%d")
+            var selfString = hbString(formatter: "%Y-%m-%d")
             selfString += " 00:00:00"
             
             let resultDate = HBDate.date(from: selfString)
@@ -214,7 +220,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var middleOfDate: Date {
         get {
-            var selfString = HBDate.string(from: self, formatter: "%Y-%m-%d")
+            var selfString = hbString(formatter: "%Y-%m-%d")
             selfString += " 12:00:00"
             
             let resultDate = HBDate.date(from: selfString)
@@ -227,7 +233,7 @@ extension Date {
     /// 在这里，认为 self 是当前时区的时间
     public var endOfDate: Date {
         get {
-            var selfString = HBDate.string(from: self, formatter: "%Y-%m-%d")
+            var selfString = hbString(formatter: "%Y-%m-%d")
             selfString += " 23:59:59"
             
             let resultDate = HBDate.date(from: selfString)
