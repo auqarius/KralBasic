@@ -61,6 +61,16 @@ public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINaviga
         popViewController(animated: true)
     }
     
+    public override init(rootViewController: UIViewController) {
+        super.init(rootViewController: rootViewController)
+        
+        rootVC = rootViewController
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController == rootVC {
             return
