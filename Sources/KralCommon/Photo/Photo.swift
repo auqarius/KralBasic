@@ -106,6 +106,17 @@ public extension Photo {
                                            from: vc)
     }
     
+    /// 打开相机拍照
+    class func openCamera(from vc: UIViewController, finish: SelectedImagesBlock?) {
+        Photo.shared.selectedImagesBlock = finish
+        Photo.shared.openCamera(from: vc)
+    }
+    
+    /// 打开相册
+    class func openPhotoLibrary(from vc: UIViewController, finish: SelectedImagesBlock) {
+        Photo.shared.selectedImagesBlock = finish
+        Photo.shared.openPhotoLibrary(from: self)
+    }
 }
 
 // Helper function inserted by Swift 4.2 migrator.
