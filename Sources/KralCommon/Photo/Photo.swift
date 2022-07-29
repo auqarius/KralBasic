@@ -113,7 +113,7 @@ public extension Photo {
     }
     
     /// 打开相册
-    class func openPhotoLibrary(from vc: UIViewController, finish: SelectedImagesBlock) {
+    class func openPhotoLibrary(from vc: UIViewController, finish: SelectedImagesBlock?) {
         Photo.shared.selectedImagesBlock = finish
         Photo.shared.openPhotoLibrary(from: self)
     }
