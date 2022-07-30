@@ -56,6 +56,16 @@ public extension UIView {
           return Bundle.main.loadNibNamed(loadName, owner: nil, options: nil)?.first as! Self
     }
     
+    var snapShot: UIImage {
+        get {
+            let renderer = UIGraphicsImageRenderer(size: bounds.size)
+            let image = renderer.image { ctx in
+                drawHierarchy(in: bounds, afterScreenUpdates: true)
+            }
+            return image
+        }
+    }
+    
 }
 
 
