@@ -78,7 +78,7 @@ public class PopupViewController: UIViewController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        viewAnimation(withDuration: 0.2) {
+        Animation.animation(withDuration: 0.2) {
             self.popupView.alpha = 1
             self.popupView.transform = CGAffineTransform(scaleX: 1, y: 1)
         }
@@ -86,7 +86,7 @@ public class PopupViewController: UIViewController {
     }
     
     public func hide() {
-        viewAnimation(withDuration: 0.2) {
+        Animation.animation(withDuration: 0.2) {
             self.popupView.alpha = 0
             self.popupView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         } completion: { finish in
