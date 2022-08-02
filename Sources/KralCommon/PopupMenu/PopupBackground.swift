@@ -16,23 +16,23 @@ public protocol PopupBackground {
 }
 
 /// 绘制气泡背景，提供参数，通过贝塞尔曲线画出背景
-struct PopupBubbleBackground: PopupBackground {
+public struct PopupBubbleBackground: PopupBackground {
     
-    var arrowSize: CGSize
+    public var arrowSize: CGSize
     
-    var cornerRadius: CGFloat = 10
-    var borderWidth: CGFloat = 0
-    var borderColor: UIColor = .white
-    var fillColor: UIColor = .lightGray
-    var shadowOpacity: Float = 0
-    var shadowRadius: CGFloat = 0
-    var shadowOffset: CGSize = .zero
+    public var cornerRadius: CGFloat = 10
+    public var borderWidth: CGFloat = 0
+    public var borderColor: UIColor = .white
+    public var fillColor: UIColor = .lightGray
+    public var shadowOpacity: Float = 0
+    public var shadowRadius: CGFloat = 0
+    public var shadowOffset: CGSize = .zero
     
-    func createBGView(_ frame: ShowPositionFrame) -> UIView {
+    public func createBGView(_ frame: ShowPositionFrame) -> UIView {
         return BubbleCreator.createView(frame, cornerRadius: cornerRadius, lineWidth: borderWidth, lineColor: borderColor, fillColor: fillColor, shadowOpacity: shadowOpacity, shadowRadius: shadowRadius, shadowOffset: shadowOffset)
     }
     
-    static var `default`: PopupBackground {
+    public static var `default`: PopupBackground {
         get {
             return PopupBubbleBackground(arrowSize: CGSize(width: 20, height: 10), cornerRadius: 15, fillColor: UIColor(hex: "#4C4C4C").alpha(0.85))
         }
@@ -41,17 +41,17 @@ struct PopupBubbleBackground: PopupBackground {
 }
 
 /// 图片背景，提供背景图片，箭头图片，背景图片将被拉伸，需要外部设定拉伸参数
-struct PopupImageBackground: PopupBackground {
+public struct PopupImageBackground: PopupBackground {
         
-    var backgroundImage: UIImage?
+    public var backgroundImage: UIImage?
     
-    var arrowImage: UIImage?
+    public var arrowImage: UIImage?
     
-    var arrowSize: CGSize
+    public var arrowSize: CGSize
     
-    var arrowPadding: UIEdgeInsets = .zero
+    public var arrowPadding: UIEdgeInsets = .zero
     
-    func createBGView(_ frame: ShowPositionFrame) -> UIView {
+    public func createBGView(_ frame: ShowPositionFrame) -> UIView {
         let view = UIView(frame: CGRect(origin: .zero, size: frame.wholeFrame.size))
         view.backgroundColor = .clear
         

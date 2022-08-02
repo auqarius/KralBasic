@@ -10,13 +10,23 @@ import Foundation
 import UIKit
 
 public struct PopupMenuItem {
-    var id: String = UUID().uuidString
-    var iconImage: UIImage?
-    var title: String = ""
-    var textFont: UIFont = .systemFont(ofSize: 11.0)
-    var textColor: UIColor = .black
-    var textAlignment: NSTextAlignment = .center
-    var iconTintColor: UIColor?
+    public var id: String = UUID().uuidString
+    public var iconImage: UIImage?
+    public var title: String = ""
+    public var textFont: UIFont = .systemFont(ofSize: 11.0)
+    public var textColor: UIColor = .black
+    public var textAlignment: NSTextAlignment = .center
+    public var iconTintColor: UIColor?
+    
+    public init(id: String, iconImage: UIImage?, title: String, textFont: UIFont, textColor: UIColor, textAlignment: NSTextAlignment, iconTintColor: UIColor?) {
+        self.id = id
+        self.iconImage = iconImage
+        self.title = title
+        self.textFont = textFont
+        self.textColor = textColor
+        self.textAlignment = textAlignment
+        self.iconTintColor = iconTintColor
+    }
 }
 
 public class PopupMenu {
@@ -32,7 +42,8 @@ public class PopupMenu {
     ///   - sourceView: 指向 view
     ///   - vc: 展示基础 vc
     ///   - itemSelected: 用户点击选中
-    static func showStandard(items: [PopupMenuItem], maxItemsOneRow: Int = 4, maxRows: Int = 4, background: PopupBackground = PopupBubbleBackground.default, recommandPositions: [MenuPosition] = [], sourceView: UIView, from vc: UIViewController, itemSelected: @escaping (PopupMenuItem) -> ()) {
+    public static func showStandard(items: [PopupMenuItem], maxItemsOneRow: Int = 4, maxRows: Int = 4, background: PopupBackground = PopupBubbleBackground.default, recommandPositions: [MenuPosition] = [], sourceView: UIView, from vc: UIViewController, itemSelected: @escaping (PopupMenuItem) -> ()) {
+        
         show(items: items, background: background, recommandPositions: recommandPositions, sourceView: sourceView, maxItemsOneRow: maxItemsOneRow, maxRows: maxRows, from: vc) { layout in
             layout.minimumLineSpacing = 4
             layout.minimumInteritemSpacing = 4
@@ -58,7 +69,7 @@ public class PopupMenu {
     ///   - layoutSettle: collectionView 的 layout 配置
     ///   - collectionViewSettle: collectionView 的配置
     ///   - itemSelected: 用户点击选中
-    static func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxItemsOneRow: Int = .max, maxRows: Int = .max, ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
+    public static func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxItemsOneRow: Int = .max, maxRows: Int = .max, ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
         if items.count <= 0 {
             return
         }
@@ -106,7 +117,7 @@ public class PopupMenu {
     ///   - layoutSettle: collectionView 的 layout 配置
     ///   - collectionViewSettle: collectionView 的配置
     ///   - itemSelected: 用户点击选中
-    static func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxContentSize: CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
+    public static func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxContentSize: CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
         if items.count <= 0 {
             return
         }

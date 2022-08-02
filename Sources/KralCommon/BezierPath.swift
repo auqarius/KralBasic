@@ -32,14 +32,14 @@ public class BezierPath {
     fileprivate var routes: [BezierPathRoute] = []
     
     /// 创建为 UIBezierPath
-    var toUIBezierPath: UIBezierPath {
+    public var toUIBezierPath: UIBezierPath {
         get {
             return routes.toUIBezierPath
         }
     }
     
     /// 创建 Layer
-    func createLayer(frame: CGRect, lineWidth: CGFloat = 0, lineColor: UIColor = .white, fillColor: UIColor = .white, shadowOpacity: Float = 0, shadowRadius: CGFloat = 0, shadowOffset: CGSize = .zero) -> CAShapeLayer {
+    public func createLayer(frame: CGRect, lineWidth: CGFloat = 0, lineColor: UIColor = .white, fillColor: UIColor = .white, shadowOpacity: Float = 0, shadowRadius: CGFloat = 0, shadowOffset: CGSize = .zero) -> CAShapeLayer {
         return toUIBezierPath.createLayer(frame: frame,
                                           lineWidth: lineWidth,
                                           lineColor: lineColor,
@@ -50,7 +50,7 @@ public class BezierPath {
     }
     
     /// 清除路线
-    func clear() {
+    public func clear() {
         routes.removeAll()
     }
     
@@ -58,7 +58,7 @@ public class BezierPath {
     /// - Parameters:
     ///   - start: 开始点
     ///   - end: 结束点
-    func addLine(start: CGPoint, end: CGPoint) {
+    public func addLine(start: CGPoint, end: CGPoint) {
         routes.append(BezierPathRoute.line(start: start, end: end))
     }
     
@@ -70,7 +70,7 @@ public class BezierPath {
     ///   - radius: 半径
     ///   - startAngle: 开始角度
     ///   - endAngle: 结束角度
-    func addRound(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat) {
+    public func addRound(center: CGPoint, radius: CGFloat, startAngle: CGFloat, endAngle: CGFloat) {
         routes.append(BezierPathRoute.round(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle))
     }
     
@@ -80,7 +80,7 @@ public class BezierPath {
     ///   - end: 结束点
     ///   - controlPoint1: 控制点1
     ///   - controlPoint2: 控制点2
-    func addCurve(start: CGPoint, end: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint) {
+    public func addCurve(start: CGPoint, end: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint) {
         routes.append(BezierPathRoute.curve(start: start, end: end, controlPoint1: controlPoint1, controlPoint2: controlPoint2))
     }
     

@@ -15,12 +15,12 @@ public enum MenuPosition {
 
 /// 显示的 position 和 frame
 public struct ShowPositionFrame {
-    var position: MenuPosition
-    var contentFrame: CGRect
-    var arrowFrame: CGRect
+    public var position: MenuPosition
+    public var contentFrame: CGRect
+    public var arrowFrame: CGRect
     
     // 箭头指向的点
-    var pointAtPoint: CGPoint {
+    public var pointAtPoint: CGPoint {
         get {
             switch position {
             case .left:
@@ -37,7 +37,7 @@ public struct ShowPositionFrame {
     
     // 放大缩小的锚点
     // 是按照比例来说的，从 0 - 1
-    var anchorPoint: CGPoint {
+    public var anchorPoint: CGPoint {
         get {
             switch position {
             case .left:
@@ -53,7 +53,7 @@ public struct ShowPositionFrame {
     }
     
     // 内容在气泡里面的相对位置和大小
-    var contentInFrame: CGRect {
+    public var contentInFrame: CGRect {
         get {
             return CGRect(x: contentFrame.minX - wholeFrame.minX,
                           y: contentFrame.minY - wholeFrame.minY,
@@ -63,7 +63,7 @@ public struct ShowPositionFrame {
     }
     
     // 箭头在气泡里面的相对位置和大小
-    var arrowInFrame: CGRect {
+    public var arrowInFrame: CGRect {
         get {
             return CGRect(x: arrowFrame.minX - wholeFrame.minX,
                           y: arrowFrame.minY - wholeFrame.minY,
@@ -73,7 +73,7 @@ public struct ShowPositionFrame {
     }
     
     // 整个气泡的位置和大小
-    var wholeFrame: CGRect {
+    public var wholeFrame: CGRect {
         get {
             var x: CGFloat = contentFrame.minX
             var y: CGFloat = contentFrame.minY
@@ -99,6 +99,12 @@ public struct ShowPositionFrame {
             
             return CGRect(x: x, y: y, width: width, height: height)
         }
+    }
+    
+    public init(position: MenuPosition, contentFrame: CGRect, arrowFrame: CGRect) {
+        self.position = position
+        self.contentFrame = contentFrame
+        self.arrowFrame = arrowFrame
     }
 }
 
@@ -692,7 +698,7 @@ extension PopupFrameCaculator {
 
 public extension PopupFrameCaculator {
     
-    static func caculateFor(aimRect: CGRect,
+    public static func caculateFor(aimRect: CGRect,
                             recommandPositions: [MenuPosition] = [],
                             minEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
                             contentSize: CGSize,
