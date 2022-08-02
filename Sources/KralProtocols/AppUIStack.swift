@@ -1,6 +1,5 @@
 //
 //  AppUIStack.swift
-//  KralCommons
 //
 //  Created by LiKai on 2022/5/18.
 //  

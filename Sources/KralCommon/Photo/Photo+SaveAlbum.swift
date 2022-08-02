@@ -1,6 +1,5 @@
 //
 //  Photo+SaveAlbum.swift
-//  KralCommons
 //
 //  Created by mac on 2021/11/4.
 //
