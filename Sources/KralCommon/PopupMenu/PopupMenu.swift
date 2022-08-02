@@ -18,7 +18,7 @@ public struct PopupMenuItem {
     public var textAlignment: NSTextAlignment = .center
     public var iconTintColor: UIColor?
     
-    public init(id: String, iconImage: UIImage?, title: String, textFont: UIFont, textColor: UIColor, textAlignment: NSTextAlignment, iconTintColor: UIColor?) {
+    public init(id: String = UUID().uuidString, iconImage: UIImage?, title: String, textFont: UIFont, textColor: UIColor, textAlignment: NSTextAlignment, iconTintColor: UIColor?) {
         self.id = id
         self.iconImage = iconImage
         self.title = title
@@ -42,7 +42,7 @@ public class PopupMenu {
     ///   - sourceView: 指向 view
     ///   - vc: 展示基础 vc
     ///   - itemSelected: 用户点击选中
-    public static func showStandard(items: [PopupMenuItem], maxItemsOneRow: Int = 4, maxRows: Int = 4, background: PopupBackground = PopupBubbleBackground.default, recommandPositions: [MenuPosition] = [], sourceView: UIView, from vc: UIViewController, itemSelected: @escaping (PopupMenuItem) -> ()) {
+    public class func showStandard(items: [PopupMenuItem], maxItemsOneRow: Int = 4, maxRows: Int = 4, background: PopupBackground = PopupBubbleBackground.default, recommandPositions: [MenuPosition] = [], sourceView: UIView, from vc: UIViewController, itemSelected: @escaping (PopupMenuItem) -> ()) {
         
         show(items: items, background: background, recommandPositions: recommandPositions, sourceView: sourceView, maxItemsOneRow: maxItemsOneRow, maxRows: maxRows, from: vc) { layout in
             layout.minimumLineSpacing = 4
@@ -69,7 +69,7 @@ public class PopupMenu {
     ///   - layoutSettle: collectionView 的 layout 配置
     ///   - collectionViewSettle: collectionView 的配置
     ///   - itemSelected: 用户点击选中
-    public static func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxItemsOneRow: Int = .max, maxRows: Int = .max, ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
+    public class func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxItemsOneRow: Int = .max, maxRows: Int = .max, ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
         if items.count <= 0 {
             return
         }
@@ -117,7 +117,7 @@ public class PopupMenu {
     ///   - layoutSettle: collectionView 的 layout 配置
     ///   - collectionViewSettle: collectionView 的配置
     ///   - itemSelected: 用户点击选中
-    public static func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxContentSize: CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
+    public class func show(items: [PopupMenuItem], background: PopupBackground, recommandPositions: [MenuPosition] = [], sourceView: UIView, contentEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), maxContentSize: CGSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude), ignoreSafeArea: Bool = false, from vc: UIViewController, layoutSettle: ((UICollectionViewFlowLayout) -> ())? = nil, collectionViewSettle: ((UICollectionView) -> ())? = nil, itemSelected: @escaping (PopupMenuItem) -> ()) {
         if items.count <= 0 {
             return
         }
