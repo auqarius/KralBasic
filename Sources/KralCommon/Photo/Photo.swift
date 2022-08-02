@@ -15,6 +15,8 @@ public class Photo: NSObject {
     
     var albums: [AlbumModel] = []
     
+    var allowsEditing: Bool = true
+    
     private override init() {
         super.init()
     }
@@ -47,7 +49,7 @@ public class Photo: NSObject {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.allowsEditing = false
+        imagePicker.allowsEditing = allowsEditing
         imagePicker.sourceType = .camera
         vc.present(imagePicker, animated: true, completion: nil)
     }
@@ -62,7 +64,7 @@ public class Photo: NSObject {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = allowsEditing
         imagePicker.sourceType = .photoLibrary
         vc.present(imagePicker, animated: true, completion: nil)
     }
@@ -95,8 +97,9 @@ public extension Photo {
     ///   - title: ActionSheet 标题
     ///   - maxNumberOfSelections: 最大添加图片数量
     ///   - finish: 选择图片完成
-    class func showSelectionActionSheet(title: String, cameraTitle: String = "Camera", albumTitle: String = "Photo Library", cancelTitle: String = "Cancel", sourceView: UIView? = nil, from vc: UIViewController, finish: SelectedImagesBlock?) {
+    class func showSelectionActionSheet(title: String, cameraTitle: String = "Camera", albumTitle: String = "Photo Library", cancelTitle: String = "Cancel", sourceView: UIView? = nil, from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?) {
         Photo.shared.selectedImagesBlock = finish
+        Photo.shared.allowsEditing = allowsEditing
         Photo.shared.showSelectActionSheet(with: title,
                                            cameraTitle: cameraTitle,
                                            albumTitle: albumTitle,
@@ -105,6 +108,19 @@ public extension Photo {
                                            from: vc)
     }
     
+    /// 打开相机拍照
+    class func openCamera(from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?) {
+        Photo.shared.selectedImagesBlock = finish
+        Photo.shared.allowsEditing = allowsEditing
+        Photo.shared.openCamera(from: vc)
+    }
+    
+    /// 打开相册
+    class func openPhotoLibrary(from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?) {
+        Photo.shared.selectedImagesBlock = finish
+        Photo.shared.allowsEditing = allowsEditing
+        Photo.shared.openPhotoLibrary(from: vc)
+    }
 }
 
 // Helper function inserted by Swift 4.2 migrator.
