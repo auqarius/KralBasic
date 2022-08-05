@@ -1,53 +1,15 @@
 //
 //  ViewExtension.swift
-//  KralCommons
 //
 //  Created by LiKai on 2022/5/18.
 //  
 //
+
 #if canImport(UIKit)
 
 import Foundation
 import UIKit
 import ObjectiveC.runtime
-
-/// 快速使用全项目都将要用到的弹簧动画
-public func bounceAnimation(withDuration duration: TimeInterval = 0.5,
-                     delay: TimeInterval = 0,
-                     usingSpringWithDamping dampingRatio: CGFloat = 0.65,
-                     initialSpringVelocity velocity: CGFloat = 0,
-                     options: UIView.AnimationOptions = .curveEaseInOut,
-                     animations: @escaping () -> Swift.Void,
-                     completion: ((Bool) -> Swift.Void)? = nil) {
-    DispatchQueue.main.async {
-        UIView.animate(withDuration: duration,
-                       delay: delay,
-                       usingSpringWithDamping: dampingRatio,
-                       initialSpringVelocity: velocity,
-                       options: options,
-                       animations: {
-                        animations()
-        }, completion: completion)
-    }
-}
-
-/// 快速使用全项目都将要用到的普通动画
-public func viewAnimation(withDuration duration: TimeInterval = 0.3,
-                   delay: TimeInterval = 0,
-                   options: UIView.AnimationOptions = [],
-                   animations: @escaping () -> Swift.Void,
-                   completion: ((Bool) -> Swift.Void)? = nil) {
-    DispatchQueue.main.async {
-        UIView.animate(withDuration: duration,
-                       delay: delay,
-                       options: options,
-                       animations: {
-            animations()
-        },
-                       completion: completion)
-    }
-}
-
 
 public extension UIView {
     

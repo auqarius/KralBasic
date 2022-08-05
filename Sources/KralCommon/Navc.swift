@@ -1,6 +1,5 @@
 //
 //  Navc.swift
-//  KralCommons
 //
 //  Created by LiKai on 2022/5/21.
 //  

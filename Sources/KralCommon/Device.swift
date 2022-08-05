@@ -1,10 +1,9 @@
 //
 //  Device.swift
-//  MyHabits
 //
 //  Created by Kral on 21/3/21.
-//  Copyright © 2021 Kral. All rights reserved.
 //
+
 #if canImport(UIKit)
 
 import Foundation
