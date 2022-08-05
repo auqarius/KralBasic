@@ -7,7 +7,7 @@
 import UIKit
 import Photos
 
-public typealias SelectedImagesBlock = (_ orignalImage: UIImage?, _ editedImage: UIImage?, _ mediaURL: URL?) -> ()
+public typealias SelectedImagesBlock = (_ orignalImage: UIImage?, _ editedImage: UIImage?, _ imageURL: URL?) -> ()
 
 public class Photo: NSObject {
         
@@ -78,10 +78,10 @@ extension Photo: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
         let orignalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
         let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage
-        let mediaURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL
+        let imageURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.imageURL)] as? URL
 
         if let selectedImagesBlock = selectedImagesBlock {
-            selectedImagesBlock(orignalImage, editedImage, mediaURL)
+            selectedImagesBlock(orignalImage, editedImage, imageURL)
         }
         picker.dismiss(animated: true, completion: nil)
     }
