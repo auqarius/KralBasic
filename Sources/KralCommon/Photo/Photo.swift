@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-public typealias SelectedImagesBlock = ([UIImage]?) -> ()
+public typealias SelectedImagesBlock = (_ orignalImage: UIImage?, _ editedImage: UIImage?, _ mediaURL: URL?) -> ()
 
 public class Photo: NSObject {
         
@@ -77,10 +77,12 @@ extension Photo: UIImagePickerControllerDelegate, UINavigationControllerDelegate
         // Local variable inserted by Swift 4.2 migrator.
         let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
-        let image = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
-        if let selectedImagesBlock = selectedImagesBlock,
-            let image = image {
-            selectedImagesBlock([image])
+        let orignalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
+        let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage
+        let mediaURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? UIImage
+
+        if let selectedImagesBlock = selectedImagesBlock {
+            selectedImagesBlock([orignalImage, editedImage, mediaURL])
         }
         picker.dismiss(animated: true, completion: nil)
     }
