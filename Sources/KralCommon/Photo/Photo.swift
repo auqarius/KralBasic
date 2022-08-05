@@ -78,10 +78,10 @@ extension Photo: UIImagePickerControllerDelegate, UINavigationControllerDelegate
 
         let orignalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage
         let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage
-        let mediaURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? UIImage
+        let mediaURL = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.mediaURL)] as? URL
 
         if let selectedImagesBlock = selectedImagesBlock {
-            selectedImagesBlock([orignalImage, editedImage, mediaURL])
+            selectedImagesBlock(orignalImage, editedImage, mediaURL)
         }
         picker.dismiss(animated: true, completion: nil)
     }
