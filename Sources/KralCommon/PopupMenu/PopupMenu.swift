@@ -95,6 +95,7 @@ public class PopupMenu {
         popupvc.contentEdge = contentEdge
         popupvc.ignoreSafeArea = ignoreSafeArea
         popupvc.maxContentSize = maxContentSize
+        popupvc.background = background
         popupvc.modalPresentationStyle = .overFullScreen
         vc.present(popupvc, animated: false)
         
