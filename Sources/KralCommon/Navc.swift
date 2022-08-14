@@ -8,6 +8,12 @@
 
 import UIKit
 
+protocol NavcNotifys {
+    
+    func didPop()
+    
+}
+
 public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
     
     public var rootVC: UIViewController!
@@ -74,6 +80,13 @@ public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINaviga
         if viewController == rootVC {
             return
         }
+        
+        if let dismissedViewController = navigationController.transitionCoordinator?.viewController(forKey: .from),
+           !navigationController.viewControllers.contains(dismissedViewController),
+           let notifyVC = dismissedViewController as? NavcNotifys {
+            notifyVC.didPop()
+        }
+        
         viewController.navigationItem.hidesBackButton = true
         var leftItems = viewController.navigationItem.leftBarButtonItems ?? []
         for item in leftItems {
