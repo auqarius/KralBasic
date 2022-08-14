@@ -75,14 +75,15 @@ public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINaviga
     }
     
     public func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController == rootVC {
-            return
-        }
         
         if let dismissedViewController = navigationController.transitionCoordinator?.viewController(forKey: .from),
            !navigationController.viewControllers.contains(dismissedViewController),
            let notifyVC = dismissedViewController as? NavcNotifys {
             notifyVC.didPop()
+        }
+        
+        if viewController == rootVC {
+            return
         }
         
         viewController.navigationItem.hidesBackButton = true
