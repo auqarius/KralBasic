@@ -8,10 +8,8 @@
 
 import UIKit
 
-protocol NavcNotifys {
-    
+public protocol NavcNotifys {
     func didPop()
-    
 }
 
 public class Navc: UINavigationController, UIGestureRecognizerDelegate, UINavigationControllerDelegate {
