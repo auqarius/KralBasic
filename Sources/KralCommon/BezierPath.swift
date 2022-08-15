@@ -38,6 +38,8 @@ public class BezierPath {
         }
     }
     
+    public init() {}
+    
     /// 创建 Layer
     public func createLayer(frame: CGRect, lineWidth: CGFloat = 0, lineColor: UIColor = .white, fillColor: UIColor = .white, shadowOpacity: Float = 0, shadowRadius: CGFloat = 0, shadowOffset: CGSize = .zero) -> CAShapeLayer {
         return toUIBezierPath.createLayer(frame: frame,
