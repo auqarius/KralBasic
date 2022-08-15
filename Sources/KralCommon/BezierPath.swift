@@ -41,14 +41,15 @@ public class BezierPath {
     public init() {}
     
     /// 创建 Layer
-    public func createLayer(frame: CGRect, lineWidth: CGFloat = 0, lineColor: UIColor = .white, fillColor: UIColor = .white, shadowOpacity: Float = 0, shadowRadius: CGFloat = 0, shadowOffset: CGSize = .zero) -> CAShapeLayer {
+    public func createLayer(frame: CGRect, lineWidth: CGFloat = 0, lineColor: UIColor = .white, fillColor: UIColor = .white, shadowOpacity: Float = 0, shadowRadius: CGFloat = 0, shadowOffset: CGSize = .zero, shadowColor: UIColor = .black) -> CAShapeLayer {
         return toUIBezierPath.createLayer(frame: frame,
                                           lineWidth: lineWidth,
                                           lineColor: lineColor,
                                           fillColor: fillColor,
                                           shadowOpacity: shadowOpacity,
                                           shadowRadius: shadowRadius,
-                                          shadowOffset: shadowOffset)
+                                          shadowOffset: shadowOffset,
+                                          shadowColor: shadowColor)
     }
     
     /// 清除路线
@@ -231,7 +232,7 @@ extension BezierPathRoute {
 }
 
 extension UIBezierPath {
-    fileprivate func createLayer(frame: CGRect, lineWidth: CGFloat = 0, lineColor: UIColor = .white, fillColor: UIColor = .white, shadowOpacity: Float = 0, shadowRadius: CGFloat = 0, shadowOffset: CGSize = .zero) -> CAShapeLayer {
+    fileprivate func createLayer(frame: CGRect, lineWidth: CGFloat = 0, lineColor: UIColor = .white, fillColor: UIColor = .white, shadowOpacity: Float = 0, shadowRadius: CGFloat = 0, shadowOffset: CGSize = .zero, shadowColor: UIColor = .black) -> CAShapeLayer {
         let shapeLayer = CAShapeLayer()
         shapeLayer.frame = frame
         shapeLayer.path = cgPath
@@ -241,6 +242,7 @@ extension UIBezierPath {
         shapeLayer.shadowOpacity = shadowOpacity
         shapeLayer.shadowRadius = shadowRadius
         shapeLayer.shadowOffset = shadowOffset
+        shapeLayer.shadowColor = shadowColor.cgColor
 
         fill()
         close()
