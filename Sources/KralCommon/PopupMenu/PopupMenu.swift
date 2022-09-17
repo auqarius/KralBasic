@@ -147,8 +147,9 @@ public class PopupMenu {
         vc.present(popupvc, animated: false)
         
         menuView.clickedItem = { item in
-            itemSelected(item)
-            popupvc.hide()
+            popupvc.hide {
+                itemSelected(item)
+            }
         }
     }
     

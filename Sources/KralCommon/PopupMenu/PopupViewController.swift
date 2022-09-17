@@ -85,12 +85,15 @@ public class PopupViewController: UIViewController {
         
     }
     
-    public func hide() {
+    public func hide(completion: (() -> ())? = nil) {
         Animation.animation(withDuration: 0.2) {
             self.popupView.alpha = 0
             self.popupView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
         } completion: { finish in
             self.dismiss(animated: false)
+            if let completion = completion {
+                completion()
+            }
         }
     }
     
