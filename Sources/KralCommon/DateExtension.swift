@@ -719,7 +719,7 @@ extension Date {
     /// - Returns: 时间
     public func dateAfterDays(_ days: Int) -> Date {
         let oneDay: TimeInterval = (24*60*60)
-        return Date(timeInterval: oneDay, since: self)
+        return Date(timeInterval: oneDay*Double(days), since: self)
     }
     
     /// 前面多少周的日期，每一周一个日期
