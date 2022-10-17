@@ -48,13 +48,24 @@ extension Date {
         return HBDate.string(from: self, formatter: formatter)
     }
     
-    /// 12:23 分秒类型的字符串
-    /// 在这里，认为 self 是当前时区的时间
-    /// 这里所有的 formatter 使用的是 c 语言的
-    /// "%Y-%m-%d %H:%M:%S"
-    public var hmString: String {
+    /// 24 小时制 时:分
+    public var hmString24: String {
         get {
            return hbString(formatter: "%H:%M")
+        }
+    }
+    
+    /// 12 小时制 时:分
+    public var hmString12: String {
+        get {
+            return hbString(formatter: "%I:%M")
+        }
+    }
+    
+    /// 12 小时制 时:分
+    public var hmString12AP: String {
+        get {
+            return hbString(formatter: "%I:%M %p")
         }
     }
     
@@ -96,6 +107,20 @@ extension Date {
         }
     }
     
+    /// 月，全称 September
+    public var monthString: String {
+        get {
+            return hbString(formatter: "%B")
+        }
+    }
+    
+    /// 月，简称 Sep
+    public var monthStringSimple: String {
+        get {
+            return hbString(formatter: "%b")
+        }
+    }
+    
     /// 年月 Int 值，例如 201808
     public var yearMonthInt: Int {
         get {
@@ -105,25 +130,46 @@ extension Date {
     
     /// 日  01 、 02 、12
     /// 在这里，认为 self 是当前时区的时间
-    public var day: Int {
+    public var day: String {
         get {
-            return hbString(formatter: "%d").int
+            return hbString(formatter: "%d")
         }
     }
     
     /// 单个日   1、 2、 12
     /// 在这里，认为 self 是当前时区的时间
-    public var singleDay: Int {
+    public var singleDay: String {
         get {
-            return  hbString(formatter: "%d").int
+            return "\(hbString(formatter: "%d").int)"
         }
     }
     
-    /// 小时
-    /// 在这里，认为 self 是当前时区的时间
-    public var hour: Int {
+    /// 周，全称 Monday
+    public var weekDayString: String {
         get {
-            return  hbString(formatter: "%H").int
+            return hbString(formatter: "%A")
+        }
+    }
+    
+    /// 周，简称 Mon
+    public var weekDayStringSimple: String {
+        get {
+            return hbString(formatter: "%a")
+        }
+    }
+    
+    /// 小时 24 小时制
+    /// 在这里，认为 self 是当前时区的时间
+    public var hour24: String {
+        get {
+            return  hbString(formatter: "%H")
+        }
+    }
+    
+    /// 小时 12 小时制
+    public var hour12: String {
+        get {
+            return hbString(formatter: "%I")
         }
     }
     
@@ -146,28 +192,6 @@ extension Date {
     /// DateFormatter 的方式来转换时间，已经创建了一个默认的 dateformatter 对象保存在线程里
     public func string(formatter: String) -> String {
         return DateFormatter.default(formatter).string(from: self)
-    }
-    
-    /// 月日：August 3
-    /// 在这里，认为 self 是当前时区的时间
-    public var monthDay: String {
-        get {
-            return string(formatter: "MMMM d")
-        }
-    }
-    
-    /// 月：August
-    public var monthString: String {
-        get {
-            return string(formatter: "MMMM")
-        }
-    }
-    
-    /// 月（简写）：Aug
-    public var simpleMonthString: String {
-        get {
-            return string(formatter: "MMM")
-        }
     }
     
     /// 所在周的第一天到最后一天
@@ -195,10 +219,10 @@ extension Date {
         }
     }
     
-    /// 这个时间的这一分钟的开始，即第 0 秒
+    /// 当前时间的这一分钟的开始，即第 0 秒
     public var minuteStart: Date {
         get {
-            return HBDate.date(from: "\(year)-\(month)-\(day) \(hour):\(min):\(00)")
+            return HBDate.date(from: "\(year)-\(month)-\(day) \(hour24):\(min):\(00)")
         }
     }
     

@@ -43,6 +43,7 @@ public extension DateFormatter {
         return threadLocalInstance(identifier: .DateFormatter(format), initialValue: {
             let df = DateFormatter()
             df.dateFormat = format
+            df.timeZone = .current
             return df
         }())
     }
