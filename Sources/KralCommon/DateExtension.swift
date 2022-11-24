@@ -226,6 +226,13 @@ extension Date {
         }
     }
     
+    /// 当前时间的这一小时的开始，即第 0 秒
+    public var hourStart: Date {
+        get {
+            return HBDate.date(from: "\(year)-\(month)-\(day) \(hour24):\(00):\(00)")
+        }
+    }
+    
     /// 某个日期的开始，即当天的 00:00:01
     /// 在这里，认为 self 是当前时区的时间
     public var startOfDate: Date {
