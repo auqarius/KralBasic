@@ -27,7 +27,12 @@
                  return rawValue
              }
          }
-     }
+ 
+         var userDefaults: UserDefaults {
+             get {
+                return UserDefaults.standard
+             }
+        }
      
      static var isFirstOpen: Bool {
          get {
@@ -54,6 +59,8 @@ import Foundation
 
 public protocol UserDefaultsGetAndSave {
     var key: String { get }
+    
+    var userDefaults: UserDefaults { get }
     
     func remove()
     
@@ -84,54 +91,54 @@ public protocol UserDefaultsGetAndSave {
 
 public extension UserDefaultsGetAndSave {
     func remove() {
-        UserDefaults.standard.removeObject(forKey: key)
+        userDefaults.removeObject(forKey: key)
     }
     
     func save(_ value: Any) {
-        UserDefaults.standard.set(value, forKey: key)
+        userDefaults.set(value, forKey: key)
     }
     
     func save(_ value: String) {
-        UserDefaults.standard.set(value, forKey: key)
+        userDefaults.set(value, forKey: key)
     }
     
     func save(_ value: Int) {
-        UserDefaults.standard.set(value, forKey: key)
+        userDefaults.set(value, forKey: key)
     }
     
     func save(_ value: Float) {
-        UserDefaults.standard.set(value, forKey: key)
+        userDefaults.set(value, forKey: key)
     }
     
     func save(_ value: Double) {
-        UserDefaults.standard.set(value, forKey: key)
+        userDefaults.set(value, forKey: key)
     }
     
     func save(_ value: Bool) {
-        UserDefaults.standard.set(value, forKey: key)
+        userDefaults.set(value, forKey: key)
     }
     
     func value() -> Any? {
-        return UserDefaults.standard.value(forKey: key)
+        return userDefaults.value(forKey: key)
     }
     
     func string() -> String? {
-        return UserDefaults.standard.value(forKey: key) as? String
+        return userDefaults.value(forKey: key) as? String
     }
     
     func int() -> Int {
-        return UserDefaults.standard.integer(forKey: key)
+        return userDefaults.integer(forKey: key)
     }
     
     func float() -> Float {
-        return UserDefaults.standard.float(forKey: key)
+        return userDefaults.float(forKey: key)
     }
     
     func double() -> Double {
-        return UserDefaults.standard.double(forKey: key)
+        return userDefaults.double(forKey: key)
     }
     
     func bool() -> Bool {
-        return UserDefaults.standard.bool(forKey: key)
+        return userDefaults.bool(forKey: key)
     }
 }
