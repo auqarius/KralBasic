@@ -70,12 +70,40 @@ public func impactFeedback(style: UIImpactFeedbackGenerator.FeedbackStyle) {
     }
 }
 
-public extension CGSize {
-    var scaled: CGSize {
-        get {
-            return CGSize(width: width*UIScreen.main.scale, height: height*UIScreen.main.scale)
-        }
+struct SeedRandomGenerator: RandomNumberGenerator {
+    
+    init(seed: Int) {
+        srand48(seed)
+    }
+    
+    func next() -> UInt64 {
+        return UInt64(drand48() * 0x1.0p64) ^ UInt64(drand48() * 0x1.0p16)
     }
 }
+
+public extension Array {
+    
+    /// 用一个 seed 来随机排序数组，seed 一定的情况下，结果一定
+    /// - Parameter seed: 大于 0 则会随机，如果小于等于 0 则不随机
+    mutating func shuffle(with seed: Int) {
+        guard seed > 0 else {
+            return
+        }
+        var srg = SeedRandomGenerator(seed: seed)
+        shuffle(using: &srg)
+    }
+    
+    /// 用一个 seed 来随机排序数组，seed 一定的情况下，结果一定
+    /// - Parameter seed: 大于 0 则会随机，如果小于等于 0 则不随机
+    func shuffled(with seed: Int) -> Array {
+        guard seed > 0 else {
+            return self
+        }
+        var srg = SeedRandomGenerator(seed: seed)
+        return shuffled(using: &srg)
+    }
+    
+}
+
 
 #endif

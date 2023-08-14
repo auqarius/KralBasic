@@ -119,6 +119,29 @@ extension UIColor {
         
         return result/360
     }
+    
+    public func toString() -> String {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        
+        return "\(red),\(green),\(blue),\(alpha)"
+    }
+    
+    public convenience init(s: String) {
+        let arr = s.components(separatedBy: ",")
+        if arr.count < 4 {
+            self.init(red: 0, green: 0, blue: 0, alpha: 1)
+        }
+        let red = CGFloat(NSString(string: arr[0]).doubleValue)
+        let green = CGFloat(NSString(string: arr[1]).doubleValue)
+        let blue = CGFloat(NSString(string: arr[2]).doubleValue)
+        let alpha = CGFloat(NSString(string: arr[3]).doubleValue)
+        
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
 }
 
 #endif

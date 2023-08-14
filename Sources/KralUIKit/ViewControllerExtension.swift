@@ -29,7 +29,7 @@ private var kMailSentBlockIdentifier = "kMailSentBlockIdentifier"
 
 public extension UIViewController {
     
-    public enum MailSendStatus: Int {
+    enum MailSendStatus: Int {
         case cancelled = 0
         case saved = 1
         case sent = 2
@@ -48,7 +48,7 @@ public extension UIViewController {
     /// 发送 Email
     /// - Parameter address: Email 地址
     /// - Returns: 是否成功
-    public func sendEmailTo(_ address: String, mailSentBlock: @escaping (MailSendStatus, Error?) -> ()) -> Bool {
+    func sendEmailTo(_ address: String, mailSentBlock: @escaping (MailSendStatus, Error?) -> ()) -> Bool {
         guard MFMailComposeViewController.canSendMail() else {
             UIPasteboard.general.string = address
             return false

@@ -698,7 +698,7 @@ extension PopupFrameCaculator {
 
 public extension PopupFrameCaculator {
     
-    public static func caculateFor(aimRect: CGRect,
+    static func caculateFor(aimRect: CGRect,
                             recommandPositions: [MenuPosition] = [],
                             minEdge: UIEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
                             contentSize: CGSize,

@@ -21,6 +21,10 @@ let package = Package(
                dependencies: []),
         .target(name: "KralCommon",
                dependencies: ["KralObjc", "DeviceKit"]),
+        .target(name: "KralUIKit",
+               dependencies: ["DeviceKit", "KralCommon"]),
+        .target(name: "KralSwiftUI",
+               dependencies: ["KralUIKit"]),
         .target(name: "KralProtocols",
                dependencies: []),
         .testTarget(

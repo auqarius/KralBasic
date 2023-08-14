@@ -7,6 +7,7 @@
 #if canImport(UIKit)
 
 import UIKit
+import KralCommon
 
 class PopupMenuView: UIView {
     
