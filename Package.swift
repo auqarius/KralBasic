@@ -11,7 +11,7 @@ let package = Package(
     products: [
         .library(
             name: "KralBasic",
-            targets: ["KralObjc", "KralCommon", "KralProtocols"]),
+            targets: ["KralObjc", "KralCommon", "KralProtocols", "KralSwiftUI", "KralUIKit"]),
     ],
     dependencies: [
         .package(url: "https://gitee.com/krallee/DeviceKit.git", from: "4.0.0")
