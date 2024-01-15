@@ -9,6 +9,9 @@ import Photos
 
 public typealias SelectedImagesBlock = (_ orignalImage: UIImage?, _ editedImage: UIImage?, _ imageURL: URL?) -> ()
 
+public typealias CancelBlock = () -> ()
+
+
 public class Photo: NSObject {
         
     static let shared: Photo = Photo()
@@ -22,6 +25,8 @@ public class Photo: NSObject {
     }
     
     var selectedImagesBlock: SelectedImagesBlock?
+    
+    var cancelBlock: CancelBlock?
         
     func showSelectActionSheet(with title: String, cameraTitle: String = "Camera", albumTitle: String = "Photo Library", cancelTitle: String = "Cancel", sourceView: UIView? = nil, from vc: UIViewController) {
         let actionSheet = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
@@ -87,6 +92,9 @@ extension Photo: UIImagePickerControllerDelegate, UINavigationControllerDelegate
     }
     
     public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        if let cancelBlock = cancelBlock {
+            cancelBlock()
+        }
         picker.dismiss(animated: true, completion: nil)
     }
 }
@@ -99,8 +107,9 @@ public extension Photo {
     ///   - title: ActionSheet 标题
     ///   - maxNumberOfSelections: 最大添加图片数量
     ///   - finish: 选择图片完成
-    class func showSelectionActionSheet(title: String, cameraTitle: String = "Camera", albumTitle: String = "Photo Library", cancelTitle: String = "Cancel", sourceView: UIView? = nil, from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?) {
+    class func showSelectionActionSheet(title: String, cameraTitle: String = "Camera", albumTitle: String = "Photo Library", cancelTitle: String = "Cancel", sourceView: UIView? = nil, from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?, cancelBock: CancelBlock? = nil) {
         Photo.shared.selectedImagesBlock = finish
+        Photo.shared.cancelBlock = cancelBock
         Photo.shared.allowsEditing = allowsEditing
         Photo.shared.showSelectActionSheet(with: title,
                                            cameraTitle: cameraTitle,
@@ -111,15 +120,17 @@ public extension Photo {
     }
     
     /// 打开相机拍照
-    class func openCamera(from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?) {
+    class func openCamera(from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?, cancelBock: CancelBlock? = nil) {
         Photo.shared.selectedImagesBlock = finish
+        Photo.shared.cancelBlock = cancelBock
         Photo.shared.allowsEditing = allowsEditing
         Photo.shared.openCamera(from: vc)
     }
     
     /// 打开相册
-    class func openPhotoLibrary(from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?) {
+    class func openPhotoLibrary(from vc: UIViewController, allowsEditing: Bool = true, finish: SelectedImagesBlock?, cancelBock: CancelBlock? = nil) {
         Photo.shared.selectedImagesBlock = finish
+        Photo.shared.cancelBlock = cancelBock
         Photo.shared.allowsEditing = allowsEditing
         Photo.shared.openPhotoLibrary(from: vc)
     }
