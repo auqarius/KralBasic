@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://gitee.com/krallee/DeviceKit.git",
       "state" : {
-        "revision" : "cc49d42dafd69c96abbf695cedbefab6441f1afa",
-        "version" : "4.6.0"
+        "revision" : "fe41d18eccd92a115cffaa35dfff03018c67e635",
+        "version" : "5.2.2"
       }
     }
   ],
