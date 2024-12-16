@@ -698,7 +698,7 @@ extension Date {
     }
     
     /// 基准时间
-    var startDate: Date {
+    public var startDate: Date {
         get {
             return ninteenSeventyYearFebOne
         }
@@ -724,7 +724,7 @@ extension Date {
     /// 从开始时间到现在过去了多少周
     /// - Parameter startDayOfWeek: 每周以周几为开始的
     /// - Returns:
-    func weeksFromStart(startDayOfWeek: Weekday = .monday) -> Int {
+    public func weeksFromStart(startDayOfWeek: Weekday = .monday) -> Int {
         let calendar = Calendar.current
         let components: Set<Calendar.Component> = [Calendar.Component.weekOfYear]
         let resultComponents = calendar.dateComponents(components, from: startDate.dateAfterDays(7 - startDayOfWeek.rawValue), to: startOfDate)
