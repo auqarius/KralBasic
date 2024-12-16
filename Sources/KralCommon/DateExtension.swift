@@ -698,7 +698,7 @@ extension Date {
     }
     
     /// 基准时间
-    fileprivate var startDate: Date {
+    var startDate: Date {
         get {
             return ninteenSeventyYearFebOne
         }
@@ -714,7 +714,7 @@ extension Date {
     /// 这几个天、周、月的对比，都要从当天的最后一秒来对比
     /// 因为切换成 0 时区的时间后，因为时差问题可能导致两个时间本来是一天后来不是一天，这样计算下来的 天、周、月 的数量就不对了
     /// 从开始的日期到现在的第几天
-    fileprivate var daysFromStart: Int {
+    var daysFromStart: Int {
         get {
             let days = Int(timeIntervalSince1970 / (24*3600))
             return days
@@ -724,7 +724,7 @@ extension Date {
     /// 从开始时间到现在过去了多少周
     /// - Parameter startDayOfWeek: 每周以周几为开始的
     /// - Returns:
-    fileprivate func weeksFromStart(startDayOfWeek: Weekday = .monday) -> Int {
+    func weeksFromStart(startDayOfWeek: Weekday = .monday) -> Int {
         let calendar = Calendar.current
         let components: Set<Calendar.Component> = [Calendar.Component.weekOfYear]
         let resultComponents = calendar.dateComponents(components, from: startDate.dateAfterDays(7 - startDayOfWeek.rawValue), to: startOfDate)
