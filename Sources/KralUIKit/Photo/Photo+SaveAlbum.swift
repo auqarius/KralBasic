@@ -8,7 +8,7 @@ import UIKit
 import Photos
 
 public extension Photo {
-    static func saveImage(_ image: UIImage, toAlbum: PHAssetCollection, completionHandler: ((Bool, Error?) -> Void)? = nil) {
+    static func saveImage(_ image: UIImage, toAlbum: PHAssetCollection? = nil, completionHandler: ((Bool, Error?) -> Void)? = nil) {
         let image = image
         PHPhotoLibrary.requestAuthorization(for: .addOnly) { (status) in
             if status == .authorized {
@@ -22,20 +22,27 @@ public extension Photo {
                         }
                         return
                     }
-                    guard let savedAssetIdentifier = savedAssetIdentifier else {
-                        if let completionHandler = completionHandler {
-                            completionHandler(success, error)
+                    if let toAlbum = toAlbum {
+                        guard let savedAssetIdentifier = savedAssetIdentifier else {
+                            if let completionHandler = completionHandler {
+                                completionHandler(success, error)
+                            }
+                            return
                         }
-                        return
-                    }
-                    let assets = PHAsset.fetchAssets(withLocalIdentifiers: [savedAssetIdentifier], options: nil)
-                    PHPhotoLibrary.shared().performChanges {
-                        let _ = PHAssetCollectionChangeRequest(for: toAlbum, assets: assets)
-                    } completionHandler: { suc, err in
+                        let assets = PHAsset.fetchAssets(withLocalIdentifiers: [savedAssetIdentifier], options: nil)
+                        PHPhotoLibrary.shared().performChanges {
+                            let _ = PHAssetCollectionChangeRequest(for: toAlbum, assets: assets)
+                        } completionHandler: { suc, err in
+                            if let completionHandler = completionHandler {
+                                completionHandler(suc, err)
+                            }
+                        }
+                    } else {
                         if let completionHandler = completionHandler {
-                            completionHandler(suc, err)
+                            completionHandler(true, nil)
                         }
                     }
+                    
                 }
             } else {
                 if let completionHandler = completionHandler {
