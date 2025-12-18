@@ -10,7 +10,7 @@ import Photos
 public extension Photo {
     static func saveImage(_ image: UIImage, toAlbum: PHAssetCollection, completionHandler: ((Bool, Error?) -> Void)? = nil) {
         let image = image
-        PHPhotoLibrary.requestAuthorization { (status) in
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { (status) in
             if status == .authorized {
                 var savedAssetIdentifier: String? = nil
                 PHPhotoLibrary.shared().performChanges({
@@ -46,7 +46,7 @@ public extension Photo {
     }
 
     static func saveVideoToAlbum(_ url: URL, completionHandler: ((Bool, Error?) -> Void)? = nil) {
-        PHPhotoLibrary.requestAuthorization { status in
+        PHPhotoLibrary.requestAuthorization(for: .addOnly) { status in
             if status == .authorized {
                 PHPhotoLibrary.shared().performChanges({
                     PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
